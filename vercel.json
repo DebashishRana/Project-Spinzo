@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "functions": {
-    "api/**/*.py": {
+    "api/index.py": {
       "excludeFiles": "{dataset/**,node_modules/**,public/**,__pycache__/**,backend/__pycache__/**,**/*.pyc,backend/test_*.py,spinzo_v6.html,INTEGRATION_GUIDE.md}"
     }
   }
