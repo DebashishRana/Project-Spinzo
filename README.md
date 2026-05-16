@@ -1,6 +1,7 @@
 <div align="center">
 
-# 🧠 SPINZO
+<img width="1232" height="627" alt="image" src="https://github.com/user-attachments/assets/2fb0beda-22b4-4d82-8c5f-8cbe2091d05c" />
+
 **Autonomous Agentic Cricket Intelligence System**
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=FastAPI&logoColor=white)](#)
