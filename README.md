@@ -32,7 +32,7 @@ Unlike traditional Akinator systems, Spinzo does NOT rely on:
 
 Instead, Spinzo is **A Living Cricket Intelligence System**. It appears to think, adapt, strategize, recover, explain, and evolve confidence dynamically.
 
-### 🏗️ Current Hackathon Build Status
+###  Current Hackathon Build Status
 *To prove feasibility, here is exactly what is running live right now:*
 ✅ **161-player semantic dataset** fully integrated.  
 ✅ **Bayesian Probability Engine** updating live per question.  
@@ -46,7 +46,7 @@ Instead, Spinzo is **A Living Cricket Intelligence System**. It appears to think
 
 Traditional guessing systems are fragile. They break under ambiguity, fail with "Maybe" answers, and hide their logic. 
 
-| Problem | Traditional Akinators | 🧠 SPINZO |
+| Problem | Traditional Akinators | SPINZO |
 | :--- | :--- | :--- |
 | **Question Logic** | Static & predictable | Dynamic entropy optimization |
 | **Uncertainty** | Binary (Breaks on errors) | Probabilistic (Handles partial truths) |
@@ -57,7 +57,7 @@ Traditional guessing systems are fragile. They break under ambiguity, fail with 
 
 ---
 
-## 🔥 The 5 Winning Hackathon Features
+## Differentiation
 
 We engineered Spinzo with specific AI features designed to showcase **Visible Machine Cognition**.
 
@@ -85,35 +85,12 @@ While framed as a game, Spinzo's core architecture is an **Entropy-Driven Diagno
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
-```text
-                ┌─────────────────────┐
-                │      Frontend       │
-                │ React + Tailwind UI │
-                └─────────┬───────────┘
-                          │
-                          ▼
-                ┌─────────────────────┐
-                │   FastAPI Backend   │
-                └─────────┬───────────┘
-                          │
-      ┌───────────────────┼───────────────────┐
-      ▼                   ▼                   ▼
-┌─────────────┐   ┌──────────────┐   ┌────────────────┐
-│ Bayesian AI │   │ Entropy Core │   │ Semantic Layer │
-└─────────────┘   └──────────────┘   └────────────────┘
-      │                   │                   │
-      └───────────────────┼───────────────────┘
-                          ▼
-                ┌─────────────────────┐
-                │ Multi-Agent Engine  │
-                └─────────┬───────────┘
-                          ▼
-                ┌─────────────────────┐
-                │ Gemini NLP Layer    │
-                └─────────────────────┘
-```
+
+<img width="1080" height="1350" alt="tech stack" src="https://github.com/user-attachments/assets/be8ff574-481e-4687-9914-404e875ee776" />
+
+
 
 ### 🤖 Multi-Agent AI System
 Spinzo simulates multiple reasoning agents interacting in the background:
