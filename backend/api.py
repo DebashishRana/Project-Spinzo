@@ -6,10 +6,12 @@ Persists anonymous game sessions and feedback in Firestore.
 import os
 import re
 import uuid
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 from backend.database import (
@@ -49,6 +51,16 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+PUBLIC_INDEX = Path(__file__).resolve().parent.parent / "public" / "index.html"
+
+
+@app.get("/", include_in_schema=False)
+async def serve_frontend():
+    """Serve the browser game when deployed as a single Render web service."""
+    if not PUBLIC_INDEX.exists():
+        raise HTTPException(status_code=404, detail="Frontend not found")
+    return FileResponse(PUBLIC_INDEX)
 
 PLAYERS = load_players()
 TOTAL_PLAYERS = len(PLAYERS)
