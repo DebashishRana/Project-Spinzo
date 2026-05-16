@@ -1,0 +1,8 @@
+node_modules/
+dataset/
+__pycache__/
+backend/__pycache__/
+backend/.git-backup/
+*.pyc
+spinzo_v6.html
+INTEGRATION_GUIDE.md
