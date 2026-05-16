@@ -1,0 +1,25 @@
+{
+  "name": "gdg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DebashishRana/Spinzo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/DebashishRana/Spinzo/issues"
+  },
+  "homepage": "https://github.com/DebashishRana/Spinzo#readme",
+  "devDependencies": {
+    "webpack": "^5.106.2",
+    "webpack-cli": "^7.0.2"
+  }
+}

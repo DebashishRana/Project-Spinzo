@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "app.py": {
+      "excludeFiles": "{dataset/**,node_modules/**,public/**,__pycache__/**,backend/__pycache__/**,**/*.pyc,backend/test_*.py,spinzo_v6.html,INTEGRATION_GUIDE.md}"
+    },
+    "api/**/*.py": {
+      "excludeFiles": "{dataset/**,node_modules/**,public/**,__pycache__/**,backend/__pycache__/**,**/*.pyc,backend/test_*.py,spinzo_v6.html,INTEGRATION_GUIDE.md}"
+    }
+  }
+}

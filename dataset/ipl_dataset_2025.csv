@@ -1,0 +1,75 @@
+﻿match_id,date,venue,team_1,team_2,stage,toss-winner,toss_decision,first_ings_score,first_ings_wkts,second_ings_score,second_ings_wkts,match_winner,won_by,margin,player_of_the_match,top_scorer,highscore,best_bowling,best_bowling_figure
+1,22-Mar-25,Kolkata,Kolkata Knight Riders,Royal Challengers Bengaluru,,Royal Challengers Bengaluru,Bowling,174,8,177,3,Royal Challengers Bengaluru,Wickets,7,Krunal Pandya,Virat Kohli ,59,Krunal Pandya,3/29
+2,23-Mar-25,Hyderabad,Sunrisers Hyderabad,Rajasthan Royals,,Rajasthan Royals,Bowling,286,6,242,6,Sunrisers Hyderabad,Runs,44,Ishan Kishan,Ishan Kishan,106,Tushar Deshpande,2/34
+3,23-Mar-25,Chennai,Chennai Super Kings,Mumbai Indians,,Chennai Super Kings,Bowling,158,6,155,9,Chennai Super Kings,Wickets,4,Noor Ahmad,R Ravindra,65,Noor Ahmad,4/18
+4,24-Mar-25,Vishakhapatnam,Delhi Capitals,Lucknow Super Giants,,Delhi Capitals,Bowling,211,9,209,8,Delhi Capitals,Wickets,1,Ashutosh Sharma,N Pooran,75,kuldeep yadav,2/20
+5,25-Mar-25,Ahmedabad,Gujarat Titans,Punjab Kings,,Gujarat Titans,Bowling,232,5,243,5,Punjab Kings,Runs,11,Shreyas Iyer,Shreyas Iyer,97,Sai kishore,3/30
+6,26-Mar-25,Guwahati,Rajasthan Royals,Kolkata Knight Riders,,Kolkata Knight Riders,Bowling,151,9,153,2,Kolkata Knight Riders,Wickets,8,Quinton De kock,Quinton De kock,97,Varun Chakravarthy,2/17
+7,27-Mar-25,Hyderabad,Sunrisers Hyderabad,Lucknow Super Giants,,Lucknow Super Giants,Bowling,190,9,193,5,Lucknow Super Giants,Wickets,5,Shardul Thakur,N Pooran,70,Shradul Thakur,4/34
+8,28-Mar-25,Chennai,Chennai Super Kings,Royal Challengers Bengaluru,,Chennai Super Kings,Bowling,146,8,196,7,Royal Challengers Bengaluru,Runs,50,Rajat Patidar,Rajat Patidar,51,Josh Hazlewood,3/21
+9,29-Mar-25,Ahmedabad,Gujarat Titans,Mumbai Indians,,Mumbai Indians,Bowling,196,8,160,6,Gujarat Titans,Runs,36,Prasidh Krishna,Sai Sudarshan,63,Prasidh Krishna,2/18
+10,30-Mar-25,Vishakhapatnam,Delhi Capitals,Sunrisers Hyderabad,,Sunrisers Hyderabad,Batting,166,3,163,10,Delhi Capitals,Wickets,7,Mitchell starc,Aniket verma ,74,Mitchell starc,5/35
+11,30-Mar-25,Guwahati,Rajasthan Royals,Chennai Super Kings,,Chennai Super Kings,Bowling,182,9,176,6,Rajasthan Royals,Runs,6,Nitish Rana,Nitish Rana,81,Wanindu Hasaranga,4/35
+12,31-Mar-25,Mumbai,Mumbai Indians,Kolkata Knight Riders,,Mumbai Indians,Bowling,121,2,116,10,Mumbai Indians,Wickets,8,Ashwani Kumar,Ryan Rickelton,62,Ashwani Kumar,4/24
+13,01-Apr-25,Lucknow,Lucknow Super Giants,Punjab Kings,,Punjab Kings,Bowling,171,7,177,2,Punjab Kings,Wickets,8,Prabhsimran singh,Prabhsimran Singh,69,Digvesh Rathi,2/30
+14,02-Apr-25,Bengaluru,Royal Challengers Bengaluru,Gujarat Titans,,Gujarat Titans,Bowling,169,8,170,2,Gujarat Titans,Wickets,8,Mohammad Siraj,Jos Buttler,73,Mohammad Siraj,3/19
+15,03-Apr-25,Kolkata,Kolkata Knight Riders,Sunrisers Hyderabad,,Sunrisers Hyderabad,Bowling,200,6,120,10,Kolkata Knight Riders,Runs,80,Vaibhav Arora,Venkatesh Iyer,60,Vaibhav Arora,3/29
+16,04-Apr-25,Lucknow,Lucknow Super Giants,Mumbai Indians,,Mumbai Indians,Bowling,203,8,191,5,Lucknow Super Giants,Runs,12,Digvesh Rathi,Suryakumar yadav,67,Hardik pandya,5/36
+17,05-Apr-25,Chennai,Chennai Super Kings,Delhi Capitals,,Delhi Capitals,Batting,158,5,183,6,Delhi Capitals,Runs,25,KL Rahul,Kl Rahul,70,khaleel ahmad,2/25
+18,05-Apr-25,New Chandigarh,Punjab Kings,Rajasthan Royals,,Punjab Kings,Bowling,155,9,205,4,Rajasthan Royals,Runs,50,Jofra Archer,Yashasvi Jaiswal,67,Jofra Archer,3/25
+19,06-Apr-25,Hyderabad,Sunrisers Hyderabad,Gujarat Titans,,Gujarat Titans,Bowling,234,7,138,3,Lucknow Super Giants,Runs,4,Mohammad Siraj,Shubman Gill,61,Mohammad Siraj,4/17
+20,07-Apr-25,Mumbai,Mumbai Indians,Royal Challengers Bengaluru,,Mumbai Indians,Bowling,152,8,153,3,Gujarat Titans,Wickets,7,Rajat Patidar,Virat Kohli ,67,Krunal Pandya,4/45
+21,08-Apr-25,Kolkata,Kolkata Knight Riders,Lucknow Super Giants,,Kolkata Knight Riders,Bowling,209,9,221,5,Royal Challengers Bengaluru,Runs,12,Nicholas Pooran,Nicholar Pooran,87,Shradul thakur,2/52
+22,08-Apr-25,New Chandigarh,Punjab Kings,Chennai Super Kings,,Punjab Kings,Batting,219,6,201,5,Punjab Kings,Runs,18,Priyansh Arya,Priyansh Arya,103,Lockie fergusan,2/40
+23,09-Apr-25,Ahmedabad,Gujarat Titans,Rajasthan Royals,,Rajasthan Royals,Bowling,217,6,159,10,Gujarat Titans,Runs,58,Sai Sudharsan,Sai Sudharsan,82,Rashid khan ,2/37
+24,10-Apr-25,Bengaluru,Royal Challengers Bengaluru,Delhi Capitals,,Delhi Capitals,Bowling,163,7,169,4,Delhi Capitals,Wickets,6,KL Rahul,KL Rahul,93,Vipraj Nigram,2/18
+25,11-Apr-25,Chennai,Chennai Super Kings,Kolkata Knight Riders,,Kolkata Knight Riders,Bowling,103,9,107,2,Kolkata Knight Riders,Wickets,8,Sunil Narine,Sunil Narine,44,Sunil Narine ,3/13
+26,12-Apr-25,Lucknow,Lucknow Super Giants,Gujarat Titans,,Lucknow Super Giants,Bowling,186,4,180,6,Lucknow Super Giants,Wickets,6,Aiden Markram,Nicholar Pooran,61,Prasidh Krishna,2/26
+27,12-Apr-25,Hyderabad,Sunrisers Hyderabad,Punjab Kings,,Punjab Kings,Batting,274,2,245,6,Sunrisers Hyderabad,Wickets,8,Abhishek Sharma,Abhishek sharma,141,Harshal Patel,4/42
+28,13-Apr-25,Jaipur,Rajasthan Royals,Royal Challengers Bengaluru,,Royal Challengers Bengaluru,Bowling,173,4,175,1,Royal Challengers Bengaluru,Wickets,9,Phil Salt,Yashasvi Jaiswal,75,Kumar Kartikeya,1/25
+29,13-Apr-25,Delhi,Delhi Capitals,Mumbai Indians,,Delhi Capitals,Bowling,193,10,205,5,Mumbai Indians,Runs,12,Karn Sharma,karun Nair,89,karn Sharma,3/36
+30,14-Apr-25,Lucknow,Lucknow Super Giants,Chennai Super Kings,,Chennai Super Kings,Bowling,166,7,168,5,Chennai Super Kings,Wickets,5,MS Dhoni,Rishabh Pant,63,Anshul Kamboj,1/20
+31,15-Apr-25,New Chandigarh,Punjab Kings,Kolkata Knight Riders,,Punjab Kings,Batting,111,10,95,10,Punjab Kings,Runs,16,Yuzvendra Chahal,Angkrish Raghuvanshi,37,Yuzvendra Chahal,4/28
+32,16-Apr-25,Delhi,Delhi Capitals,Rajasthan Royals,,Rajasthan Royals,Bowling,188,5,188,4,Delhi Capitals,Super Over,,Mitchell starc,Nitish Rana,51,Axar Patel,1/23
+33,17-Apr-25,Mumbai,Mumbai Indians,Sunrisers Hyderabad,,Mumbai Indians,Bowling,166,6,162,5,Mumbai Indians,Wickets,4,Will Jacks,Abhishek sharma,40,Will Jacks,2/14
+34,18-Apr-25,Bengaluru,Royal Challengers Bengaluru,Punjab Kings,,Punjab Kings,Bowling,95,9,98,5,Punjab Kings,Wickets,5,Tim David,Tim David,50,Josh Hazlewood,3/14
+35,19-Apr-25,Ahmedabad,Gujarat Titans,Delhi Capitals,,Gujarat Titans,Bowling,204,3,203,8,Gujarat Titans,Wickets,7,Jos Buttler,Jos Buttler,97,Prasidh Krishna,4/41
+36,19-Apr-25,Jaipur,Rajasthan Royals,Lucknow Super Giants,,Lucknow Super Giants,Batting,178,5,180,5,Lucknow Super Giants,Runs,2,Abesh khan,Yashasvi Jaiswal,74,Aiden Markram,1/18
+37,20-Apr-25,New Chandigarh,Punjab Kings,Royal Challengers Bengaluru,,Royal Challengers Bengaluru,Bowling,157,6,159,3,Royal Challengers Bengaluru,Wickets,7,Virat Kohli,Virat Kohli ,73,Krunal Pandya,2/25
+38,20-Apr-25,Mumbai,Mumbai Indians,Chennai Super Kings,,Mumbai Indians,Bowling,177,1,176,5,Mumbai Indians,Wickets,9,Rohit Sharma,Rohit Sharma,76,Jasprit Bumrah,2/25
+39,21-Apr-25,Kolkata,Kolkata Knight Riders,Gujarat Titans,,Kolkata Knight Riders,Bowling,159,8,198,3,Gujarat Titans,Runs,39,Shubman Gill,Shubman Gill,90,Andre Russell,1/13
+40,22-Apr-25,Lucknow,Lucknow Super Giants,Delhi Capitals,,Delhi Capitals,Bowling,159,6,161,2,Delhi Capitals,Wickets,8,Mukesh Kumar,Kl Rahul,57,Mukesh Kumar,4/33
+41,23-Apr-25,Hyderabad,Sunrisers Hyderabad,Mumbai Indians,,Mumbai Indians,Bowling,143,8,146,3,Mumbai Indians,Wickets,7,Trent Boult,Heinrich klaasen,71,Trent boult,4/26
+42,24-Apr-25,Bengaluru,Royal Challengers Bengaluru,Rajasthan Royals,,Rajasthan Royals,Bowling,205,5,194,9,Royal Challengers Bengaluru,Runs,11,Josh Hazlewood,Virat Kohli ,70,Josh Hazlewood,4/33
+43,25-Apr-25,Chennai,Chennai Super Kings,Sunrisers Hyderabad,,Sunrisers Hyderabad,Bowling,154,10,155,5,Sunrisers Hyderabad,Wickets,5,Harshal  Patel,Ishan Kishan,44,Harshal Patel,4/28
+44,26-Apr-25,Kolkata,Kolkata Knight Riders,Punjab Kings,,Punjab Kings,Batting,7,0,201,4,Punjab Kings,Wickets,5,,Prabhsimran Singh,83,Vaibhav Arora,2/34
+45,27-Apr-25,Mumbai,Mumbai Indians,Lucknow Super Giants,,Lucknow Super Giants,Bowling,215,7,161,10,Mumbai Indians,Runs,54,Will Jacks,Ryan Rickelton,58,Will Jacks,2/18
+46,27-Apr-25,Delhi,Delhi Capitals,Royal Challengers Bengaluru,,Royal Challengers Bengaluru,Bowling,162,8,165,4,Royal Challengers Bengaluru,Wickets,6,Krunal Pandya,Krunal Pandya,73,Krunal Pandya,1/28
+47,28-Apr-25,Jaipur,Rajasthan Royals,Gujarat Titans,,Rajasthan Royals,Bowling,212,2,209,4,Rajasthan Royals,Wickets,8,Vaibhav Suryavanshi,Vaibhav Suryavanshi,101,Maheesh Theekshana,2/35
+48,29-Apr-25,Delhi,Delhi Capitals,Kolkata Knight Riders,,Delhi Capitals,Bowling,190,9,204,9,Kolkata Knight Riders,Runs,14,Sunil Narine,Faf Du Plessis,62,Sunil Narine ,3/29
+49,30-Apr-25,Chennai,Chennai Super Kings,Punjab Kings,,Punjab Kings,Bowling,190,10,194,6,Punjab Kings,Wickets,4,Shreyas Iyer,Sam Curran,88,Marco Jansen,2/30
+50,01-May-25,Jaipur,Rajasthan Royals,Mumbai Indians,,Rajasthan Royals,Bowling,117,10,217,2,Mumbai Indians,Runs,100,Ryan Rickelton,Ryan Rickelton,61,Hardik pandya,1/2
+51,02-May-25,Ahmedabad,Gujarat Titans,Sunrisers Hyderabad,,Sunrisers Hyderabad,Bowling,224,6,186,6,Gujarat Titans,Runs,38,Prasidh Krishna,Shubman Gill,76,Prasidh Krishna,2/19
+52,03-May-25,Bengaluru,Royal Challengers Bengaluru,Chennai Super Kings,,Chennai Super Kings,Bowling,213,5,211,5,Royal Challengers Bengaluru,Runs,2,Romario Shepherd,Ayush Mhatre,94,Lungi Ngidi,3/30
+53,04-May-25,Kolkata,Kolkata Knight Riders,Rajasthan Royals,,Kolkata Knight Riders,Batting,206,4,205,8,Kolkata Knight Riders,Runs,1,Andre Russel,Riyan Parag,95,Riyan Parag,1/21
+54,05-May-25,Dharamshala,Punjab Kings,Lucknow Super Giants,,Lucknow Super Giants,Bowling,236,5,199,7,Punjab Kings,Runs,37,Prabhsimran singh,Prabhsimran Singh,91,Arshdeep Singh,3/16
+55,06-May-25,Hyderabad,Sunrisers Hyderabad,Delhi Capitals,,Sunrisers Hyderabad,Bowling,133,7,n/a,n/a,n/a,No result,,n/a,Ashutosh Sharma,41,Pat Cummin ,3/19
+56,07-May-25,Mumbai,Mumbai Indians,Gujarat Titans,,Gujarat Titans,Bowling,155,8,147,7,Gujarat Titans,D/L method,,Shubman Gill,Will Jacks,53,Gerald Coetzee,1/10
+57,08-May-25,Kolkata,Kolkata Knight Riders,Chennai Super Kings,,Kolkata Knight Riders,Batting,179,6,183,8,Chennai Super Kings,Wickets,2,Noor Ahmad,Dewald Brevis,52,Noor Ahmad,4/31
+58,09-May-25,Bengaluru,Royal Challengers Bengaluru,Kolkata Knight Riders,,no toss,no toss,match abandoned,match abandoned,match abandoned,n/a,match abandoned,Match Abandoned,,match abandoned,match abandoned,,match abandoned,
+59,10-May-25,Jaipur,Rajasthan Royals,Punjab Kings,,Punjab Kings,Batting,209,7,219,5,Punjab Kings,Runs,10,Harpreet Brar,Nehal Wadhera,70,Harpreet Brar,3/22
+60,11-May-25,Delhi,Delhi Capitals,Gujarat Titans,,Gujarat Titans,Bowling,199,3,205,0,Gujarat Titans,Wickets,10,Sai Sudharsan,Kl Rahul,112,Arshad khan,1/7
+61,12-May-25,Lucknow,Lucknow Super Giants,Sunrisers Hyderabad,,Sunrisers Hyderabad,Bowling,205,7,206,4,Sunrisers Hyderabad,Wickets,6,Abhishek Sharma,Mitchell Marsh,65,Eshan Malinga,2/28
+62,13-May-25,Delhi,Chennai Super Kings,Rajasthan Royals,,Rajasthan Royals,Bowling,187,8,188,4,Rajasthan Royals,Wickets,6,Akash Madhwal,Vaibhav Suryavanshi,57,Akash Madhwal,3/29
+63,14-May-25,Mumbai,Mumbai Indians,Delhi Capitals,,Delhi Capitals,Bowling,180,5,121,10,m,Runs,59,Suryakumar Yadav,Suryakumar Yadav,73,Vipraj Nigram,0/25
+64,15-May-25,Ahmedabad,Gujarat Titans,Lucknow Super Giants,,Gujarat Titans,Bowling,202,9,235,2,Lucknow Super Giants,Runs,33,Mitchell Marsh,Mitchell Marsh,117,Will O'Rourke,3/27
+65,16-May-25,Lucknow,Royal Challengers Bengaluru,Sunrisers Hyderabad,,Royal Challengers Bengaluru,Bowling,189,10,231,6,Sunrisers Hyderabad,Runs,42,Ishan Kishan,Ishan Kishan,94,Pat Cummin ,3/28
+66,17-May-25,Jaipur,Punjab Kings,Delhi Capitals,,Delhi Capitals,Bowling,206,8,208,4,Delhi Capitals,Wickets,6,Sameer Rizvi,Sameer Rizvi,58,Mustafizur Rahman,3/33
+67,18-May-25,Ahmedabad,Gujarat Titans,Chennai Super Kings,,Chennai Super Kings,Batting,147,10,230,5,Chennai Super Kings,Runs,83,Dewald Brevis,Dewald Brevis,57,Prasidh Krishna,2/22
+68,19-May-25,Delhi,Sunrisers Hyderabad,Kolkata Knight Riders,,Sunrisers Hyderabad,Batting,278,3,168,10,Sunrisers Hyderabad,Runs,110,Heinrich Klaasen,Heinrich klaasen,105,Sunil Narine ,2/42
+69,20-May-25,Jaipur,Punjab Kings,Mumbai Indians,,Punjab Kings,Bowling,187,3,184,7,Punjab Kings,Wickets,7,Josh Inglis,Josh Inglis,73,Vijaykumar Vyshak,2/44
+70,21-May-25,Lucknow,Lucknow Super Giants,Royal Challengers Bengaluru,,Royal Challengers Bengaluru,Bowling,227,3,230,4,Royal Challengers Bengaluru,Wickets,6,Jitesh Sharma,Rishabh Pant,118,Nuwan Thushara,1/26
+71,22-May-25,New Chandigarh,Punjab Kings,Royal Challengers Bengaluru,,Royal Challengers Bengaluru,Bowling,101,10,106,2,Royal Challengers Bengaluru,Wickets,8,Suyash Sharma,Phil Salt,56,Josh Hazlewood,3/21
+72,30-May-25,New Chandigarh,Gujarat Titans,Mumbai Indians,,Mumbai Indians,Batting,208,6,228,5,m,Runs,20,Rohit Sharma,Rohit Sharma,81,Washington Sundar,0/7
+73,01-Jun-25,Ahmedabad,Mumbai Indians,Punjab Kings,,Punjab Kings,Bowling,203,6,203,5,Punjab Kings,Wickets,5,Shreyas Iyer,Shreyas Iyer,87,Ashwani Kumar,2/55
+74,03-Jun-25,Ahmedabad,Royal Challengers Bengaluru,Punjab Kings,,Punjab Kings,Bowling,190,9,184,7,Royal Challengers Bengaluru,Runs,6,Krunal Pandya,Shashank Singh,61,Krunal Pandya,2/17
