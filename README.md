@@ -12,7 +12,7 @@
 
 > **SPINZO is an AI that doesn't just guess — it thinks out loud, explains itself, handles uncertainty like a human, and catches logical contradictions in real-time. It narrows down the exact IPL player in 5.3 questions on average.**
 
-🔴 **Live Demo:** [spinzo-ai.vercel.app](#)  
+🔴 **Live Demo:** https://project-spinzo.onrender.com
 📹 **2-Minute Pitch Video:** [youtube.com/watch?v=spinzo](#)  
 📖 **Dataset Used:** 161-Player Semantic Elite IPL Dataset  
 
