@@ -37,6 +37,9 @@ from question import (
 
 app = FastAPI(title="SPINZO IPL Oracle", version="1.1")
 
+MIN_ANSWERS_BEFORE_GUESS = 8
+GUESS_CONFIDENCE_THRESHOLD = 0.85
+
 
 def _cors_origins() -> List[str]:
     configured = os.getenv("ALLOWED_ORIGINS", "*").strip()
@@ -290,6 +293,13 @@ def _build_guess(game_id: str, player: Dict[str, Any], confidence: float) -> Gue
     )
 
 
+def _should_make_guess(confidence: float, answered_attempts: int) -> bool:
+    return (
+        answered_attempts >= MIN_ANSWERS_BEFORE_GUESS
+        and confidence > GUESS_CONFIDENCE_THRESHOLD
+    )
+
+
 def _save_current_guess(game_id: str, guess: GuessResponse, remaining: List[Dict[str, Any]]) -> None:
     set_doc(
         "game_sessions",
@@ -453,7 +463,7 @@ async def submit_answer(req: GameAnswerRequest):
 
     if not session:
         raise HTTPException(status_code=404, detail="Game session not found")
-    if session.get("status") not in {"active", "guessed"}:
+    if session.get("status") != "active":
         raise HTTPException(status_code=409, detail="Game session is already finished")
 
     remaining = _players_from_ids(session.get("remaining_player_ids", ALL_PLAYER_IDS))
@@ -484,8 +494,8 @@ async def submit_answer(req: GameAnswerRequest):
         raise _firestore_error(exc) from exc
 
     remaining = _rank_players_by_learning(remaining, learning_stats)
-    max_questions = 10
-    should_guess = confidence >= 0.80 or len(remaining) <= 1 or turn_count >= max_questions
+    answered_attempts = len(history)
+    should_guess = _should_make_guess(confidence, answered_attempts)
 
     base_session_update = {
         "remaining_player_ids": [_player_id(player) for player in remaining],

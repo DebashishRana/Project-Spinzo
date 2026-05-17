@@ -1144,7 +1144,7 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
       <li>Keep that player in mind throughout the game</li>
       <li>Answer each question <strong style="color:var(--gold)">honestly</strong></li>
       <li>Use "Don't Know" if unsure — it helps!</li>
-      <li>The AI Wicky will guess your player in 8 questions</li>
+      <li>The AI Wicky will guess after 8+ questions once confidence clears 85%</li>
       <li>See if SPINZO reads your mind 🔮</li>
     </ol>
     <button class="modal-close" onclick="closeModal()">Got it! Let's Play →</button>
@@ -1245,6 +1245,7 @@ let localCandidateEngine = {
 
 const BACKEND_ANSWER_TIMEOUT_MS = 30000;
 const MIN_QUESTIONS_BEFORE_GUESS = 8;
+const FINAL_GUESS_CONFIDENCE_THRESHOLD = 85;
 
 const DEFAULT_CANDIDATE_POOL = [
   'MS Dhoni',
@@ -1532,8 +1533,11 @@ function localConfidence() {
   return normalizeConfidenceValue(Math.max(rows[0]?.confidence || 0, (100 / pool) + progressBoost), gameState.confidence || 10);
 }
 
-function canRevealGuess() {
-  return gameState.questionNum >= Math.min(MIN_QUESTIONS_BEFORE_GUESS, gameState.maxQuestions || MIN_QUESTIONS_BEFORE_GUESS);
+function canRevealGuess(confidence = gameState.confidence) {
+  return (
+    gameState.questionNum >= MIN_QUESTIONS_BEFORE_GUESS &&
+    normalizeConfidenceValue(confidence, 0) > FINAL_GUESS_CONFIDENCE_THRESHOLD
+  );
 }
 
 function buildLocalGuessData() {
@@ -2428,7 +2432,7 @@ Strategy for questions - cycle through these categories intelligently:
 - Specific characteristics
 
 Start with broad questions and get specific. Be dramatic and mystical in reactions.
-Only guess when you have 70%+ confidence or on the 7th-8th question.`;
+Only guess after at least 8 answered questions and only when confidence is greater than 85%.`;
 
   const historyText = gameState.history.map((h,i) => `Q${i+1}: ${h.q} → Answer: ${h.a}`).join('\n');
   const userMsg = gameState.history.length === 0

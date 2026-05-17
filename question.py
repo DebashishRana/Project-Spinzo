@@ -458,11 +458,14 @@ def main():
     total_players_count = len(total_players_list)
     asked_questions = []
     candidate_fields = get_candidate_fields()
+    min_answers_before_guess = 8
+    guess_confidence_threshold = 0.85
 
     print("Welcome to Cricket Akinator!")
-    for turn in range(8):
+    turn = 0
+    while remaining_players:
         confidence = calculate_confidence(len(remaining_players), total_players_count, turn)
-        if len(remaining_players) <= 1 or confidence >= 0.80:
+        if turn >= min_answers_before_guess and confidence > guess_confidence_threshold:
             print(f"\nConfidence reached threshold ({confidence:.0%}).")
             break
 
@@ -492,8 +495,9 @@ def main():
 
         new_confidence = calculate_confidence(len(remaining_players), total_players_count, turn + 1)
         print(f"{len(remaining_players)} candidates remain (Confidence: {new_confidence:.0%}).")
+        turn += 1
 
-        if new_confidence >= 0.80:
+        if turn >= min_answers_before_guess and new_confidence > guess_confidence_threshold:
             print(f"\nConfidence is high enough ({new_confidence:.0%})! Making final guess.")
             break
 
