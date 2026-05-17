@@ -1,0 +1,339 @@
+{
+  "_schema_metadata": {
+    "name": "SPINZO Elite IPL Player Schema \u2014 EXACT BUILD SCHEMA",
+    "version": "3.0-FINAL",
+    "purpose": "This is the EXACT schema used to populate all 161 player records in SPINZO",
+    "total_blocks": 34,
+    "total_fields_per_player": "~200",
+    "player_count": 161,
+    "built_for": "SPINZO \u2014 GDG Hackathon | Autonomous Agentic Cricket Intelligence",
+    "files_this_schema_powers": [
+      "spin_wizards_cluster.json (13 players)",
+      "fast_bowling_monsters_cluster.json (15 players)",
+      "ipl_hackathon_master_elite_dataset.json (100 players)",
+      "ipl_hackathon_master_elite_dataset_v2.json (130 players)",
+      "ipl_hackathon_master_elite_dataset_v3.json (161 players)"
+    ]   
+  },
+  "player_id": "string | e.g. '10001'",
+  "short_name": "string | e.g. 'Ms Dhoni'",
+  "full_name": "string | e.g. 'Ms Dhoni'",
+  "slug": "string | e.g. 'ms-dhoni'",
+  "personal_info": {
+    "dob": "string | ISO date | e.g. '1988-11-05'",
+    "age": "integer | e.g. 37",
+    "age_bracket": "string | '20s' | '30s' | '40s'",
+    "nationality": "string | e.g. 'India' | 'Australia' | 'West Indies'",
+    "is_indian": "boolean | true/false",
+    "birth_city": "string | e.g. 'Delhi'",
+    "height_cm": "integer | e.g. 175",
+    "jersey_number": "integer | e.g. 18",
+    "ipl_debut_age": "integer | e.g. 19"
+  },
+  "identity": {
+    "bat_style": "string | 'Right hand Bat' | 'Left hand Bat'",
+    "bowl_style": "string | e.g. 'Right arm Fast' | 'Slow Left arm Orthodox'",
+    "playing_role": "string | 'Batsman' | 'Bowler' | 'Allrounder' | 'Wicketkeeper Batter'",
+    "is_wicketkeeper": "boolean",
+    "is_allrounder": "boolean",
+    "is_spinner": "boolean",
+    "is_pacer": "boolean",
+    "is_lefthanded": "boolean",
+    "is_powerplay_batter": "boolean",
+    "is_death_overs_batter": "boolean",
+    "is_middle_order": "boolean",
+    "is_opener": "boolean",
+    "primary_role_cluster": "string | e.g. 'Top Order Batter' | 'Leg Spinner' | 'Fast Bowler'",
+    "secondary_role_cluster": "string | e.g. 'Chase Specialist' | 'Death Overs Specialist'"
+  },
+  "ipl_career": {
+    "teams_played_for": "array of strings | e.g. ['RCB', 'MI']",
+    "current_team": "string | e.g. 'Royal Challengers Bengaluru'",
+    "seasons_played": "array of year strings | e.g. ['2008','2009',...,'2025']",
+    "debut_year": "integer | e.g. 2008",
+    "last_active_year": "integer | e.g. 2025",
+    "ipl_titles_won": "integer | e.g. 0 | 5",
+    "total_matches": "integer | e.g. 243",
+    "total_innings": "integer | e.g. 237",
+    "total_runs": "integer | e.g. 8004",
+    "batting_average": "float | e.g. 37.17",
+    "strike_rate": "float | e.g. 130.41",
+    "total_fours": "integer | e.g. 700",
+    "total_sixes": "integer | e.g. 236",
+    "fifties": "integer | e.g. 54",
+    "hundreds": "integer | e.g. 8",
+    "highest_score": "integer | e.g. 113",
+    "not_outs": "integer | e.g. 28",
+    "total_wickets": "integer | e.g. 4",
+    "bowling_average": "float | e.g. 45.0",
+    "economy": "float | e.g. 8.82",
+    "best_bowling": "string | e.g. '5/19'",
+    "pom_awards": "integer | e.g. 22",
+    "is_captain": "boolean",
+    "captaincy_years": "array of year strings | e.g. ['2013','2014']",
+    "is_vice_captain": "boolean",
+    "orange_cap_seasons": "array of year strings | e.g. ['2016']",
+    "purple_cap_seasons": "array of year strings | e.g. ['2013']"
+  },
+  "season_stats": {
+    "YYYY": {
+      "matches": "integer",
+      "runs": "integer",
+      "avg": "float",
+      "sr": "float",
+      "wickets": "integer",
+      "economy": "float | null if batter only",
+      "fifties": "integer",
+      "hundreds": "integer",
+      "pom": "integer | Player of Match count that season"
+    }
+  },
+  "akinator_tags": {
+    "is_legend": "boolean",
+    "is_active_2025": "boolean",
+    "known_for_big_runs": "boolean",
+    "known_for_wickets": "boolean",
+    "known_for_sixhitting": "boolean",
+    "known_for_yorkers": "boolean",
+    "known_for_swing": "boolean",
+    "known_for_spin": "boolean",
+    "franchise_icon": "boolean",
+    "international_star": "boolean",
+    "has_won_ipl": "boolean",
+    "is_chase_master": "boolean",
+    "is_anchor_batter": "boolean",
+    "is_aggressive_player": "boolean",
+    "is_calm_player": "boolean",
+    "is_powerplay_specialist": "boolean",
+    "is_death_overs_specialist": "boolean",
+    "is_clutch_player": "boolean",
+    "is_crowd_favorite": "boolean",
+    "is_loyal_to_one_franchise": "boolean",
+    "is_captaincy_hub": "boolean",
+    "is_consistent_performer": "boolean",
+    "is_big_match_player": "boolean",
+    "is_young_sensation": "boolean",
+    "is_veteran": "boolean",
+    "is_overseas_player": "boolean"
+  },
+  "player_archetypes": "array of strings | e.g. ['run_machine','chase_master','franchise_icon']",
+  "emotion_profile": {
+    "aggression": "integer 0-100",
+    "calmness": "integer 0-100",
+    "leadership": "integer 0-100",
+    "passion": "integer 0-100",
+    "fan_following": "integer 0-100",
+    "clutch_factor": "integer 0-100",
+    "confidence": "integer 0-100",
+    "consistency": "integer 0-100",
+    "pressure_handling": "integer 0-100",
+    "adaptability": "integer 0-100",
+    "team_chemistry": "integer 0-100",
+    "mental_toughness": "integer 0-100"
+  },
+  "fan_perception": "array of strings | e.g. ['aggressive','passionate','intense']",
+  "commentary_tags": "array of strings | e.g. ['King Kohli','Run Machine','Chase God']",
+  "storylines": "array of strings | e.g. ['loyal_to_one_franchise','orange_cap_2016']",
+  "era_classification": "array of strings | e.g. ['ipl_originals','modern_legend','2010s_dominance']",
+  "popularity_metrics": {
+    "global_popularity_rank": "integer | e.g. 1",
+    "fan_emotion_score": "integer 0-100",
+    "social_media_influence": "integer 0-100",
+    "brand_value_score": "integer 0-100",
+    "search_trend_score": "integer 0-100",
+    "jersey_sales_rank": "integer | e.g. 1"
+  },
+  "advanced_reasoning_weights": {
+    "nationality_weight": "float 0.0-1.0",
+    "captaincy_weight": "float 0.0-1.0",
+    "role_weight": "float 0.0-1.0",
+    "franchise_weight": "float 0.0-1.0",
+    "archetype_weight": "float 0.0-1.0",
+    "emotion_weight": "float 0.0-1.0",
+    "popularity_weight": "float 0.0-1.0",
+    "era_weight": "float 0.0-1.0",
+    "stat_weight": "float 0.0-1.0",
+    "storyline_weight": "float 0.0-1.0"
+  },
+  "confusion_cluster": {
+    "similar_players": "array of strings | players the AI might confuse with this one",
+    "commonly_confused_reason": "array of strings | why confusion happens",
+    "disambiguation_questions": "array of strings | exact questions that resolve confusion"
+  },
+  "relationship_graph": {
+    "long_time_teammates": "array of strings",
+    "current_teammates": "array of strings",
+    "rivals": "array of strings",
+    "mentors": "array of strings",
+    "frequent_opponents": "array of strings"
+  },
+  "semantic_search_tags": "array of lowercase strings | used for vector search + retrieval",
+  "semantic_cricket_profile": {
+    "spin_threat": "float 0.0-1.0",
+    "pace_threat": "float 0.0-1.0",
+    "swing_threat": "float 0.0-1.0",
+    "keeper_vector": "float 0.0-1.0",
+    "captain_vector": "float 0.0-1.0",
+    "clutch_vector": "float 0.0-1.0",
+    "power_hitting_vector": "float 0.0-1.0",
+    "anchor_vector": "float 0.0-1.0",
+    "chase_vector": "float 0.0-1.0",
+    "powerplay_vector": "float 0.0-1.0",
+    "death_overs_vector": "float 0.0-1.0",
+    "wicket_vector": "float 0.0-1.0",
+    "economy_vector": "float 0.0-1.0",
+    "deception_vector": "float 0.0-1.0"
+  },
+  "language_learning_layer": {
+    "fan_aliases": "array of strings | nicknames and fan names",
+    "meme_references": "array of strings | viral moments/memes",
+    "commentary_semantics": "array of strings | broadcast phrases",
+    "emotionally_loaded_terms": "array of strings | words that evoke this player",
+    "crowd_chants": "array of strings | stadium chants",
+    "broadcast_phrases": "array of strings | famous commentary lines"
+  },
+  "meta_reasoning": {
+    "confidence_stability": "integer 0-100",
+    "ambiguity_detection_score": "integer 0-100 (lower = less ambiguous)",
+    "current_reasoning_quality": "string | 'ultra_high' | 'high' | 'medium'",
+    "risk_of_misclassification": "integer 0-100 (lower = safer)",
+    "requires_verification": "boolean",
+    "recommended_reasoning_strategy": "string | e.g. 'franchise_then_role_then_captaincy'",
+    "estimated_questions_to_guess": "float | e.g. 4.2",
+    "entropy_reduction_per_question": "float | e.g. 0.38"
+  },
+  "strategic_question_planning": {
+    "optimal_first_question": "string | best opening question for this player",
+    "high_information_questions": "array of strings | top entropy questions",
+    "dangerous_questions": "array of strings | questions that cause confusion",
+    "question_sequence_recommendation": "array of strings | ordered strategy",
+    "future_branch_quality": "object | path_name: float score"
+  },
+  "reasoning_memory": {
+    "commonly_successful_questions": "array of strings",
+    "frequent_user_confusions": "array of strings | players users confuse with this one",
+    "high_failure_paths": "array of strings | reasoning paths that fail",
+    "adaptive_learning_enabled": "boolean",
+    "successful_resolution_rate": "float 0.0-1.0"
+  },
+  "intelligence_theater": {
+    "thinking_messages": "array of strings | shown while AI is thinking",
+    "drama_level": "integer 0-100",
+    "suspense_factor": "integer 0-100",
+    "reveal_message": "string | shown when AI makes final guess",
+    "failure_message": "string | shown when AI fails"
+  },
+  "humanized_reasoning": {
+    "can_express_uncertainty": "boolean",
+    "uncertainty_phrases": "array of strings | said when AI is unsure",
+    "self_doubt_probability": "float 0.0-1.0",
+    "recovery_phrases": "array of strings | said when recovering from contradiction",
+    "confidence_verbal_map": {
+      "0_30": "string | what AI says at 0-30% confidence",
+      "30_60": "string | what AI says at 30-60% confidence",
+      "60_80": "string | what AI says at 60-80% confidence",
+      "80_95": "string | what AI says at 80-95% confidence",
+      "95_100": "string | what AI says at 95-100% confidence"
+    }
+  },
+  "competitive_psychology": {
+    "difficulty_adaptation": "boolean",
+    "user_skill_estimation": "object | {current_estimate: 'beginner'|'intermediate'|'advanced'}",
+    "adaptive_modes": "array of strings | ['normal_mode','expert_mode','mind_game_mode']",
+    "bluffing_resistance": "float 0.0-1.0",
+    "contradiction_tolerance": "float 0.0-1.0"
+  },
+  "cognitive_states": {
+    "current_state": "string | 'exploring'|'narrowing'|'strategic_verification'|'confirming'|'recovering'",
+    "possible_states": "array of strings | all valid states",
+    "state_transition_rules": {
+      "confidence_below_30": "'exploring'",
+      "confidence_30_to_60": "'narrowing'",
+      "confidence_60_to_80": "'strategic_verification'",
+      "confidence_above_80": "'confirming'",
+      "contradiction_detected": "'recovering'"
+    }
+  },
+  "failure_analysis": {
+    "can_explain_failure": "boolean",
+    "graceful_failure_message": "string | shown to user when AI fails",
+    "common_failure_reasoning": "array of strings | why AI might fail on this player",
+    "post_game_report_enabled": "boolean"
+  },
+  "question_explainability": {
+    "expected_information_gain": "float 0.0-1.0",
+    "confidence_shift_prediction": "float | expected confidence jump per question",
+    "target_clusters": "array of strings | player clusters this question targets",
+    "why_this_question": "string | human-readable explanation",
+    "players_eliminated_estimate": "integer | how many players this question removes"
+  },
+  "uncertainty_engine": {
+    "supports_partial_truth": "boolean",
+    "supports_maybe_answers": "boolean",
+    "ambiguity_score": "integer 0-100 (lower = more certain)",
+    "confidence_distribution": {
+      "yes": "float | probability of YES answer",
+      "maybe": "float | probability of MAYBE answer",
+      "no": "float | probability of NO answer"
+    },
+    "contradiction_resolution_strategy": "string | e.g. 'reweight_and_ask_pivot_question'",
+    "partial_answer_handling": "string | e.g. 'bayesian_soft_update'"
+  },
+  "embedding_space": {
+    "aggression_vector": "float 0.0-1.0",
+    "leadership_vector": "float 0.0-1.0",
+    "clutch_vector": "float 0.0-1.0",
+    "popularity_vector": "float 0.0-1.0",
+    "crowd_aura_vector": "float 0.0-1.0",
+    "consistency_vector": "float 0.0-1.0",
+    "spin_affinity_vector": "float 0.0-1.0",
+    "pace_affinity_vector": "float 0.0-1.0",
+    "allrounder_vector": "float 0.0-1.0",
+    "keeper_vector": "float 0.0-1.0",
+    "finisher_vector": "float 0.0-1.0",
+    "anchor_vector": "float 0.0-1.0",
+    "run_accumulator_vector": "float 0.0-1.0",
+    "big_match_vector": "float 0.0-1.0",
+    "franchise_loyalty_vector": "float 0.0-1.0"
+  },
+  "agentic_loop": {
+    "pipeline": "array | ['observe','reason','plan','ask','evaluate','adapt','learn']",
+    "is_self_improving": "boolean",
+    "agent_logs": {
+      "strategist_agent": "string | what this agent is currently deciding",
+      "probability_agent": "string | current Bayesian update note",
+      "semantic_agent": "string | semantic pattern detected",
+      "contradiction_agent": "string | contradiction status",
+      "explainability_agent": "string | explanation being generated"
+    }
+  },
+  "intelligence_moments": {
+    "contradiction_detection_enabled": "boolean",
+    "confidence_spike_animation": "boolean",
+    "adaptive_strategy_shift": "boolean",
+    "reasoning_explanation_enabled": "boolean",
+    "graceful_uncertainty_handling": "boolean",
+    "pivot_question_highlight": "boolean",
+    "post_game_intelligence_report": "boolean",
+    "dramatic_final_reveal": "boolean",
+    "confetti_on_win": "boolean"
+  },
+  "agentic_ai_metadata": {
+    "entropy_priority_score": "integer 0-100 | how high-entropy this player is",
+    "question_frequency_score": "integer 0-100 | how often questions about this player appear",
+    "difficulty_to_guess": "integer 0-100 | lower = easier to guess",
+    "bayesian_priority_score": "integer 0-100",
+    "semantic_uniqueness_score": "integer 0-100",
+    "avg_questions_to_identify": "float | e.g. 4.2",
+    "fastest_identification_path": "string | e.g. 'indian \u2192 captain \u2192 never_won_ipl \u2192 rcb_loyal'",
+    "most_confusing_path": "string | e.g. 'top_order_batter \u2192 right_hand \u2192 consistent'"
+  },
+  "spinzo_sprite_mapping": {
+    "default_state": "'spinzo_thinking.png'",
+    "high_confidence_state": "'spinzo_winner.png'",
+    "win_state": "'spinzo_winner.png'",
+    "confused_state": "'spinzo_thinking.png'",
+    "thinking_state": "'spinzo_thinking.png'",
+    "confidence_threshold_for_winner_sprite": "integer | 75 (show winner sprite above this %)"
+  }
+}
