@@ -13,10 +13,13 @@
  
 > An AI reasoning engine that identifies any IPL player from a **161-player dataset** through adaptive yes/no questioning — converging on the correct player in an average of **5.3 questions**.
  
-**Live Demo:** [project-spinzo.onrender.com](https://project-spinzo.onrender.com)
+**Case Paper:** [project-spinzo.onrender.com](https://project-spinzo.onrender.com)
  
 </div>
 ---
+
+
+
  
 ## Table of Contents
  
@@ -35,7 +38,14 @@
 - [Project Structure](#project-structure)
 - [Hackathon Context](#hackathon-context)
 ---
- 
+
+
+<img width="1710" height="951" alt="Screenshot 2026-05-17 182321" src="https://github.com/user-attachments/assets/71b589a1-72fe-490a-85ca-057df366ecb3" />
+
+<img width="1536" height="1024" alt="WhatsApp Image 2026-05-17 at 6 27 13 PM" src="https://github.com/user-attachments/assets/92f8b4a8-4bff-4a2c-a70a-37be2f57a03a" />
+<img width="1288" height="1221" alt="WhatsApp Image 2026-05-17 at 6 25 48 PM" src="https://github.com/user-attachments/assets/952a0e39-e3cb-45b0-a401-4217c056ff1b" />
+
+
 ## Overview
  
 Traditional guessing games rely on hardcoded question trees — they break under ambiguity, fail silently on contradictions, and hide all reasoning. SPINZO is fundamentally different.
