@@ -13,7 +13,7 @@
  
 > An AI reasoning engine that identifies any IPL player from a **161-player dataset** through adaptive yes/no questioning — converging on the correct player in an average of **5.3 questions**.
  
-**Case Paper:** [project-spinzo.onrender.com](https://project-spinzo.onrender.com)
+**Case Paper:** [project-spinzo.onrender.com](https://canva.link/hbpm2p376qw1o9l)
  
 </div>
 ---
