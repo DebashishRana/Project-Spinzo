@@ -12,6 +12,7 @@ from typing import Any, Dict, List, Optional
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from backend.database import (
@@ -52,7 +53,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-PUBLIC_INDEX = Path(__file__).resolve().parent.parent / "public" / "index.html"
+PUBLIC_DIR = Path(__file__).resolve().parent.parent / "public"
+PUBLIC_INDEX = PUBLIC_DIR / "index.html"
+
+if PUBLIC_DIR.exists():
+    app.mount("/public", StaticFiles(directory=PUBLIC_DIR), name="public")
 
 
 @app.get("/", include_in_schema=False)
@@ -198,13 +203,77 @@ def _rank_players_by_learning(
     return sorted(players, key=learning_score, reverse=True)
 
 
-def _fallback_question() -> Dict[str, str]:
+FALLBACK_FIELD_QUESTIONS = {
+    "identity.playing_role": "Is your player primarily known for batting?",
+    "identity.is_wicketkeeper": "Is your player a wicketkeeper?",
+    "identity.is_allrounder": "Is your player an all-rounder?",
+    "identity.is_spinner": "Is your player mainly a spinner?",
+    "identity.is_pacer": "Is your player mainly a fast bowler?",
+    "identity.is_lefthanded": "Is your player left-handed?",
+    "ipl_career.is_captain": "Has your player captained an IPL side?",
+    "personal_info.is_indian": "Is your player Indian?",
+    "akinator_tags.is_legend": "Is your player considered an IPL legend?",
+    "akinator_tags.is_active_2025": "Is your player still active in IPL 2025?",
+    "akinator_tags.known_for_big_runs": "Is your player known for scoring big runs?",
+    "akinator_tags.known_for_wickets": "Is your player known for taking wickets?",
+    "akinator_tags.known_for_sixhitting": "Is your player known for six-hitting?",
+    "akinator_tags.known_for_yorkers": "Is your player known for bowling yorkers?",
+    "akinator_tags.franchise_icon": "Is your player a franchise icon?",
+    "akinator_tags.international_star": "Is your player an international star?",
+    "akinator_tags.has_won_ipl": "Has your player won an IPL title?",
+    "akinator_tags.is_chase_master": "Is your player known as a chase master?",
+    "akinator_tags.is_anchor_batter": "Is your player more of an anchor batter?",
+    "akinator_tags.is_aggressive_player": "Is your player known for an aggressive style?",
+    "akinator_tags.is_calm_player": "Is your player known for staying calm under pressure?",
+    "akinator_tags.is_powerplay_specialist": "Is your player a powerplay specialist?",
+    "akinator_tags.is_death_overs_specialist": "Is your player a death-overs specialist?",
+    "akinator_tags.is_clutch_player": "Is your player known for clutch performances?",
+    "akinator_tags.is_crowd_favorite": "Is your player a crowd favorite?",
+    "akinator_tags.is_loyal_to_one_franchise": "Is your player loyal to one IPL franchise?",
+    "akinator_tags.is_captaincy_hub": "Is your player strongly linked with IPL captaincy?",
+}
+
+
+def _fallback_question(field_splits: Optional[List[Dict[str, Any]]] = None) -> Dict[str, str]:
+    field = "identity.is_allrounder"
+    if field_splits:
+        field = field_splits[0].get("field") or field
+
     return {
-        "question": "Is your player an all-rounder?",
-        "reaction": "The oracle awakens...",
-        "thinkingMsg": "Consulting IPL archives...",
-        "targets_field": "identity.is_allrounder",
+        "question": FALLBACK_FIELD_QUESTIONS.get(field, "Is your player an all-rounder?"),
+        "reaction": "I am using the strongest clue available...",
+        "thinkingMsg": "Recovering from a slow AI read...",
+        "targets_field": field,
     }
+
+
+def _question_history_with_answers(
+    asked_questions: List[Dict[str, Any]],
+    history: List[Dict[str, Any]],
+) -> List[Dict[str, Any]]:
+    """Merge stored questions with the user's answers for Gemini's next prompt."""
+    used_history_indexes = set()
+    enriched: List[Dict[str, Any]] = []
+
+    for question in asked_questions:
+        item = dict(question)
+        field = item.get("targets_field")
+
+        for index, answer_item in enumerate(history):
+            if index in used_history_indexes:
+                continue
+            if answer_item.get("field") != field:
+                continue
+            answer = answer_item.get("answer")
+            if answer:
+                item["answer"] = answer
+                item["answered_turn"] = answer_item.get("turn")
+                used_history_indexes.add(index)
+                break
+
+        enriched.append(item)
+
+    return enriched
 
 
 def _build_guess(game_id: str, player: Dict[str, Any], confidence: float) -> GuessResponse:
@@ -316,7 +385,7 @@ async def start_game(req: GameStartRequest):
         question_data = ask_next_question(summary, top_fields, asked)
     except Exception as exc:
         print(f"Gemini error: {exc}")
-        question_data = _fallback_question()
+        question_data = _fallback_question(top_fields)
 
     turn_count = 1
     confidence = calculate_confidence(len(remaining), TOTAL_PLAYERS, turn_count)
@@ -396,7 +465,17 @@ async def submit_answer(req: GameAnswerRequest):
         remaining = filter_players(remaining, last_field, answer)
 
     turn_count = int(session.get("turn_count", 0) or 0) + 1
-    history.append({"answer": answer, "field": last_field, "turn": turn_count})
+    previous_question_item = asked[-1] if asked else {}
+    previous_question = previous_question_item.get("question")
+    history.append(
+        {
+            "answer": answer,
+            "field": last_field,
+            "question": previous_question,
+            "turn": previous_question_item.get("turn", max(turn_count - 1, 1)),
+            "answered_before_turn": turn_count,
+        }
+    )
     confidence = calculate_confidence(len(remaining), TOTAL_PLAYERS, turn_count)
 
     try:
@@ -453,15 +532,11 @@ async def submit_answer(req: GameAnswerRequest):
     summary = summarize_candidates(remaining, top_n=5)
 
     try:
-        question_data = ask_next_question(summary, top_fields, asked)
+        question_history = _question_history_with_answers(asked, history)
+        question_data = ask_next_question(summary, top_fields, question_history)
     except Exception as exc:
         print(f"Gemini error: {exc}")
-        question_data = {
-            "question": "Is your player still playing IPL?",
-            "reaction": "Interesting pattern emerging...",
-            "thinkingMsg": "Analyzing responses...",
-            "targets_field": "akinator_tags.is_active_2025",
-        }
+        question_data = _fallback_question(top_fields)
 
     asked.append(
         {

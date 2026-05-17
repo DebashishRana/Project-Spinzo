@@ -242,7 +242,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .ans-btn:active{transform:scale(0.96)!important}
 
 /* ========== FINAL GUESS PAGE ========== */
-#finalguess{text-align:center;max-width:580px;width:100%;animation:fadeIn 0.6s ease forwards}
+#finalguess{text-align:center;max-width:760px;width:100%;animation:fadeIn 0.6s ease forwards}
 .reveal-intro{font-family:'Space Grotesk',sans-serif;font-size:0.7rem;color:rgba(0,229,255,0.7);letter-spacing:0.25em;text-transform:uppercase;margin-bottom:20px}
 .player-card{background:rgba(5,12,28,0.92);backdrop-filter:blur(30px);border:1px solid rgba(255,215,0,0.25);border-radius:20px;padding:36px;position:relative;overflow:hidden;box-shadow:0 0 60px rgba(255,215,0,0.08),0 0 100px rgba(0,229,255,0.04);animation:reveal-card 0.8s ease forwards}
 @keyframes reveal-card{0%{opacity:0;transform:scale(0.82) translateY(20px)}100%{opacity:1;transform:scale(1) translateY(0)}}
@@ -253,6 +253,17 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .player-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.4rem,4.5vw,2.2rem);font-weight:900;background:linear-gradient(135deg,var(--gold),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
 .player-team{font-family:'Inter',sans-serif;font-size:0.9rem;color:rgba(200,220,255,0.55);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px}
 .conf-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.25);border-radius:50px;font-family:'Inter',sans-serif;font-size:0.85rem;color:var(--gold);letter-spacing:0.1em;margin-bottom:28px}
+.final-reason-block{margin:24px 0 18px;text-align:left;background:rgba(0,229,255,0.045);border:1px solid rgba(0,229,255,0.16);border-radius:8px;padding:16px 18px}
+.final-section-title{font-family:'Space Grotesk',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.final-reason-text{font-size:.9rem;color:rgba(210,230,255,.72);line-height:1.75;margin:0 0 12px;white-space:pre-line}
+.final-xfactor{font-size:.82rem;color:rgba(0,255,136,.78);line-height:1.6;border-top:1px solid rgba(0,255,136,.14);padding-top:10px}
+.final-candidates{margin:18px 0 6px;text-align:left}
+.final-candidates .candidate-table{font-size:.66rem}
+.final-candidates .candidate-table th:last-child,
+.final-candidates .candidate-table td:last-child{width:98px}
+.final-candidates .candidate-table th:nth-child(3),
+.final-candidates .candidate-table td:nth-child(3){width:42%;text-align:left}
+.alt-reason{color:rgba(190,215,235,.58);white-space:normal;line-height:1.35}
 .result-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
 .btn-correct{padding:12px 28px;background:linear-gradient(135deg,rgba(0,255,120,0.18),rgba(0,200,80,0.08));border:1px solid rgba(0,255,120,0.35);border-radius:50px;color:var(--green);font-family:'Inter',sans-serif;font-size:0.95rem;font-weight:600;letter-spacing:0.1em;cursor:pointer;transition:all 0.25s}
 .btn-correct:hover{background:rgba(0,255,120,0.2);box-shadow:0 0 18px rgba(0,255,120,0.25)}
@@ -541,6 +552,171 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
   #bg-layer::before,#bg-layer::after,.bg-grid,.hero-beam,.hero-spark,.spinzo-wrap,.spinzo-wrap::before,.spinzo-wrap::after,.spinzo-logo-img,.logo-reflection,.asset-ball-glow,.asset-bat-glow,.hero-copy,.action-panel,.home-tagline,.home-tagline::after,.btn-play{animation:none!important;transition-duration:.01ms!important}
   .asset-ball-glow,.asset-bat-glow,.hero-atmosphere{display:none}
 }
+/* ============================================
+   SPINZO PIXEL STADIUM FRONTEND OVERRIDES
+   Frontend-only asset visibility fixes.
+   ============================================ */
+:root{
+  /* Reversible size switch: 420px is 50% larger than the original 280px. Try 360px-460px to tune. */
+  --spinzo-sprite-size:420px;
+}
+#stadium-bg{
+  background:
+    linear-gradient(180deg, rgba(135,206,235,0.18) 0%, rgba(135,206,235,0.08) 52%, rgba(45,106,45,0.20) 52%, rgba(45,106,45,0.28) 100%),
+    url('public/assets/sprites/background.jpeg') center center / cover no-repeat !important;
+  opacity:1 !important;
+  filter:none !important;
+}
+#stadium-bg::before,
+#stadium-bg::after{display:none !important}
+
+.char-platform{
+  min-height:560px !important;
+  width:var(--spinzo-sprite-size) !important;
+  height:calc(var(--spinzo-sprite-size) * 1.34) !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+.char-svg-wrap{
+  width:var(--spinzo-sprite-size) !important;
+  height:calc(var(--spinzo-sprite-size) * 1.34) !important;
+  max-width:90vw;
+  display:flex !important;
+  align-items:flex-end !important;
+  justify-content:center !important;
+}
+.char-svg-wrap > svg{display:none !important}
+.spinzo-sprite{
+  display:block;
+  width:var(--spinzo-sprite-size);
+  max-width:100%;
+  height:auto;
+  object-fit:contain;
+  image-rendering:auto;
+  filter:drop-shadow(0 12px 0 rgba(0,0,0,.20)) drop-shadow(0 0 10px rgba(0,255,136,.35));
+  transform-origin:50% 100%;
+}
+.char-state-thinking .spinzo-sprite,
+.char-state-focused .spinzo-sprite{animation:charFloat 3s ease-in-out infinite}
+.char-state-guessing .spinzo-sprite,
+.char-state-smug .spinzo-sprite{filter:drop-shadow(0 12px 0 rgba(0,0,0,.20)) drop-shadow(0 0 16px #00ff88)}
+.char-state-celebrating .spinzo-sprite{animation:charBounce .6s ease infinite}
+.char-state-confused .spinzo-sprite,
+.char-state-shocked .spinzo-sprite{animation:charShake .5s ease}
+@keyframes charFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes charBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+@keyframes charShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+.top-bar .conf-bar{display:none !important}
+.top-bar{
+  justify-content:center !important;
+  gap:22px !important;
+  background:rgba(13,27,42,.84) !important;
+  border:3px solid #2d6a2d !important;
+  box-shadow:0 4px 0 rgba(26,74,26,.9), inset 0 0 0 2px rgba(0,255,136,.18) !important;
+}
+.q-num{color:#00e5ff !important}
+.pdot{
+  width:12px !important;
+  height:12px !important;
+  border-radius:50% !important;
+  border:2px solid #00ff88 !important;
+  background:#1a3a1a !important;
+}
+.pdot.done,
+.pdot.current{
+  background:#00ff88 !important;
+  box-shadow:0 0 10px rgba(0,255,136,.7) !important;
+}
+.pdot.current{transform:scale(1.3)}
+
+#gameplay{
+  max-width:1280px !important;
+  gap:28px !important;
+}
+.char-panel{
+  width:440px !important;
+  min-width:420px !important;
+  overflow:visible !important;
+}
+.char-container{overflow:visible !important}
+
+.candidate-panel{
+  width:100%;
+  background:rgba(13,27,42,.88);
+  border:3px solid #2d6a2d;
+  box-shadow:0 4px 0 rgba(26,74,26,.9), inset 0 0 0 2px rgba(0,255,136,.18);
+  border-radius:8px;
+  padding:12px 14px;
+  color:#e8f4ff;
+}
+.candidate-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  color:#ffd700;
+  font-family:'Space Grotesk',monospace;
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.candidate-title span:last-child{color:#00e5ff;font-size:.62rem}
+.candidate-table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+  font-family:'Space Grotesk',monospace;
+  font-size:.68rem;
+}
+.candidate-table th,
+.candidate-table td{
+  padding:7px 8px;
+  border-top:1px solid rgba(0,255,136,.18);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.candidate-table th{
+  color:#8ecfff;
+  font-size:.58rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-align:left;
+}
+.candidate-table th:last-child,
+.candidate-table td:last-child{text-align:right;width:88px}
+.candidate-score{
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-end;
+  min-width:48px;
+  color:#00ff88;
+}
+.candidate-bar{
+  display:inline-block;
+  vertical-align:middle;
+  width:48px;
+  height:6px;
+  margin-right:7px;
+  border:1px solid rgba(0,255,136,.45);
+  background:#1a3a1a;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.25);
+}
+.candidate-bar-fill{
+  display:block;
+  height:100%;
+  width:0%;
+  background:#00ff88;
+  transition:width .45s ease;
+}
+
+@media(max-width:900px){
+  .char-panel{width:100% !important;min-width:0 !important}
+  .char-platform{width:min(var(--spinzo-sprite-size),92vw) !important}
+}
 </style>
 </head>
 <body>
@@ -632,25 +808,25 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
         <div class="stat-chip">
           <span class="chip-icon">🏏</span>
           <span>IPL PLAYERS</span>
-          <span class="chip-val">700+</span>
+          <span class="chip-val">150+</span>
         </div>
         <div class="stat-chip">
           <span class="chip-icon">❓</span>
           <span>QUESTIONS</span>
-          <span class="chip-val">10</span>
+          <span class="chip-val">8</span>
         </div>
         <div class="stat-chip">
           <span class="chip-icon">🔮</span>
-          <span>AI POWERED</span>
-          <span class="chip-val">YES</span>
+          <span>Supercharged by </span>
+          <span class="chip-val">GEMINI 3.0</span>
         </div>
       </div>
 
       <!-- Ticker -->
       <div class="ticker-wrap">
         <span class="ticker-inner">
-          IPL 2024 SEASON<span class="ticker-sep">◆</span>THINK OF ANY PLAYER<span class="ticker-sep">◆</span>PAST OR PRESENT<span class="ticker-sep">◆</span>AI ORACLE ACTIVE<span class="ticker-sep">◆</span>MUMBAI INDIANS<span class="ticker-sep">◆</span>CSK<span class="ticker-sep">◆</span>RCB<span class="ticker-sep">◆</span>KKR<span class="ticker-sep">◆</span>SRH<span class="ticker-sep">◆</span>DC<span class="ticker-sep">◆</span>PBKS<span class="ticker-sep">◆</span>LSG<span class="ticker-sep">◆</span>GT<span class="ticker-sep">◆</span>&nbsp;&nbsp;&nbsp;&nbsp;
-          IPL 2024 SEASON<span class="ticker-sep">◆</span>THINK OF ANY PLAYER<span class="ticker-sep">◆</span>PAST OR PRESENT<span class="ticker-sep">◆</span>AI ORACLE ACTIVE<span class="ticker-sep">◆</span>MUMBAI INDIANS<span class="ticker-sep">◆</span>CSK<span class="ticker-sep">◆</span>RCB<span class="ticker-sep">◆</span>KKR<span class="ticker-sep">◆</span>SRH<span class="ticker-sep">◆</span>DC<span class="ticker-sep">◆</span>PBKS<span class="ticker-sep">◆</span>LSG<span class="ticker-sep">◆</span>GT<span class="ticker-sep">◆</span>
+          IPL 2024 SEASON<span class="ticker-sep">◆</span>THINK OF ANY PLAYER<span class="ticker-sep">◆</span>PAST OR PRESENT<span class="ticker-sep">◆</span>AI Wicky ACTIVE<span class="ticker-sep">◆</span>MUMBAI INDIANS<span class="ticker-sep">◆</span>CSK<span class="ticker-sep">◆</span>RCB<span class="ticker-sep">◆</span>KKR<span class="ticker-sep">◆</span>SRH<span class="ticker-sep">◆</span>DC<span class="ticker-sep">◆</span>PBKS<span class="ticker-sep">◆</span>LSG<span class="ticker-sep">◆</span>GT<span class="ticker-sep">◆</span>&nbsp;&nbsp;&nbsp;&nbsp;
+          IPL 2024 SEASON<span class="ticker-sep">◆</span>THINK OF ANY PLAYER<span class="ticker-sep">◆</span>PAST OR PRESENT<span class="ticker-sep">◆</span>AI Wicky ACTIVE<span class="ticker-sep">◆</span>MUMBAI INDIANS<span class="ticker-sep">◆</span>CSK<span class="ticker-sep">◆</span>RCB<span class="ticker-sep">◆</span>KKR<span class="ticker-sep">◆</span>SRH<span class="ticker-sep">◆</span>DC<span class="ticker-sep">◆</span>PBKS<span class="ticker-sep">◆</span>LSG<span class="ticker-sep">◆</span>GT<span class="ticker-sep">◆</span>
         </span>
       </div>
     </div>
@@ -672,8 +848,14 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
           <div class="char-glow-bg" id="charGlow"></div>
           <div id="charParticles"></div>
 
-          <!-- ORACLE SVG CHARACTER -->
+          <!-- SPINZO SPRITE CHARACTER -->
           <div class="char-svg-wrap char-float" id="charSvgWrap">
+            <img
+              id="spinzo-sprite"
+              class="spinzo-sprite"
+              src="public/assets/sprites/neutral.jpeg"
+              alt="SPINZO mascot"
+            />
             <svg viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
               <defs>
                 <radialGradient id="bodyGrad" cx="50%" cy="40%" r="60%">
@@ -795,7 +977,7 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
           </div>
 
           <!-- Bubble -->
-          <div class="char-bubble" id="charBubble">The oracle awakens...</div>
+          <div class="char-bubble" id="charBubble">The Wicky awakens...</div>
 
           <!-- Hex base -->
           <svg class="char-hex-base" viewBox="0 0 160 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -805,11 +987,11 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
         </div>
 
         <!-- Status + energy -->
-        <div class="char-status" id="charStatus">ORACLE ONLINE</div>
+        <div class="char-status" id="charStatus">Wicky ONLINE</div>
         <div class="char-energy"><div class="char-energy-fill" id="charEnergyFill" style="width:10%"></div></div>
 
         <div class="char-mobile-info">
-          <div class="char-status" id="charStatusMobile" style="font-size:0.5rem;color:rgba(0,229,255,0.4)">ORACLE ONLINE</div>
+          <div class="char-status" id="charStatusMobile" style="font-size:0.5rem;color:rgba(0,229,255,0.4)">Wicky ONLINE</div>
         </div>
       </div>
 
@@ -817,7 +999,7 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
       <div class="char-stat-card hud-card hud-card-b">
         <div class="char-stat-row">
           <span class="csr-label">Question</span>
-          <span class="csr-val" id="char-qnum-display">1 / 10</span>
+          <span class="csr-val" id="char-qnum-display">1 / 8</span>
         </div>
         <div class="char-stat-row">
           <span class="csr-label">Confidence</span>
@@ -825,7 +1007,7 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
         </div>
         <div class="char-stat-row">
           <span class="csr-label">Mode</span>
-          <span class="csr-val" style="color:var(--purple)">IPL ORACLE</span>
+          <span class="csr-val" style="color:var(--purple)">IPL Wicky</span>
         </div>
       </div>
     </div>
@@ -833,7 +1015,7 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
     <!-- RIGHT: Gameplay Area -->
     <div class="gameplay-right">
       <div class="top-bar">
-        <div class="q-num">Q <span id="qnum">1</span> / 10</div>
+        <div class="q-num">Q <span id="qnum">1</span> / 8</div>
         <div class="progress-dots" id="pdots"></div>
         <div class="conf-bar">
           <span>READING</span>
@@ -842,16 +1024,38 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
         </div>
       </div>
 
+      <div class="candidate-panel hud-card hud-card-b" aria-live="polite">
+        <div class="candidate-title">
+          <span>Possible Candidates</span>
+          <span id="candidate-state">Scouting</span>
+        </div>
+        <table class="candidate-table">
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Confidence</th>
+            </tr>
+          </thead>
+          <tbody id="candidate-rows">
+            <tr><td>MS Dhoni</td><td><span class="candidate-score"><span class="candidate-bar"><span class="candidate-bar-fill" style="width:10%"></span></span>10%</span></td></tr>
+            <tr><td>Virat Kohli</td><td><span class="candidate-score"><span class="candidate-bar"><span class="candidate-bar-fill" style="width:6%"></span></span>6%</span></td></tr>
+            <tr><td>Rohit Sharma</td><td><span class="candidate-score"><span class="candidate-bar"><span class="candidate-bar-fill" style="width:4%"></span></span>4%</span></td></tr>
+            <tr><td>Jasprit Bumrah</td><td><span class="candidate-score"><span class="candidate-bar"><span class="candidate-bar-fill" style="width:3%"></span></span>3%</span></td></tr>
+            <tr><td>Suresh Raina</td><td><span class="candidate-score"><span class="candidate-bar"><span class="candidate-bar-fill" style="width:2%"></span></span>2%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
       <div class="q-card hud-card hud-card-b">
         <div class="q-card-inner">
-          <div class="ai-reaction" id="ai-reaction">◈ The oracle awakens...</div>
+          <div class="ai-reaction" id="ai-reaction">◈ The Wicky awakens...</div>
           <div id="api-loading">
             <div class="spinner"></div>
             <div class="thinking-msg" id="think-msg">Consulting IPL archives...</div>
             <div class="think-sub-text" id="think-sub">Analyzing player database...</div>
           </div>
           <div id="question-content">
-            <div class="q-text" id="q-text">Initializing oracle...</div>
+            <div class="q-text" id="q-text">Initializing Wicky...</div>
             <div class="thinking-wrap">
               <div class="dot"></div><div class="dot"></div><div class="dot"></div>
               <span class="thinking-text" id="think-sub-q">Scanning IPL records...</span>
@@ -871,13 +1075,32 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
 
   <!-- ==================== FINAL GUESS PAGE ==================== -->
   <div id="finalguess" style="display:none">
-    <div class="reveal-intro">◈ &nbsp; I HAVE READ YOUR MIND... &nbsp; ◈</div>
+    <div class="reveal-intro">◈ &nbsp; I HAVE READ YOUR MIND HAHAAH... &nbsp; ◈</div>
     <div class="player-card hud-card hud-card-b">
       <div class="player-emoji" id="guess-emoji">🏏</div>
       <div class="player-name" id="guess-name">Loading...</div>
       <div class="player-team" id="guess-team">IPL Legend</div>
       <div class="conf-badge">⚡ <span id="guess-conf">85</span>% Confidence</div>
-      <p style="font-size:0.9rem;color:rgba(180,210,255,0.55);line-height:1.7;margin-bottom:20px" id="guess-reason">Based on your answers, this is who I believe you're thinking of.</p>
+      <div class="final-reason-block">
+        <div class="final-section-title">Why This Player</div>
+        <p class="final-reason-text" id="guess-reason">Based on your answers, this is who I believe you're thinking of.</p>
+        <div class="final-xfactor" id="guess-xfactor">The X factor i've chosed this player...</div>
+      </div>
+      <div class="final-candidates">
+        <div class="final-section-title">Other Candidates</div>
+        <table class="candidate-table">
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Confidence</th>
+              <th>Why Lower</th>
+            </tr>
+          </thead>
+          <tbody id="final-candidate-rows">
+            <tr><td>Virat Kohli</td><td><span class="candidate-score"><span class="candidate-bar"><span class="candidate-bar-fill" style="width:11%"></span></span>11%</span></td><td class="alt-reason">Awaiting final clues.</td></tr>
+          </tbody>
+        </table>
+      </div>
       <div class="result-btns">
         <button class="btn-correct" onclick="showSuccess()">✅ YES, CORRECT!</button>
         <button class="btn-wrong" onclick="showFailure()">❌ WRONG GUESS</button>
@@ -890,7 +1113,7 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
     <div class="glass hud-card hud-card-b" style="width:100%;max-width:460px;text-align:center">
       <div class="success-icon">🏆</div>
       <div class="success-title">MIND READ!</div>
-      <p class="success-msg">The IPL Oracle strikes again!<br>Your player was indeed <strong id="success-name" style="color:var(--gold)">—</strong>.<br>The cricket oracle never fails.</p>
+      <p class="success-msg">Wicky never misses !<br>The player you thought of was <strong id="success-name" style="color:var(--gold)">—</strong>.<br>Let's keep going !!!!!!.</p>
       <button class="btn-play" style="font-size:0.75rem;padding:14px 36px" onclick="resetGame()">▶ PLAY AGAIN</button>
     </div>
   </div>
@@ -899,14 +1122,14 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
   <div id="failure" style="display:none">
     <div class="glass hud-card hud-card-b" style="width:100%;max-width:460px">
       <div class="fail-avatar">🔮</div>
-      <div class="fail-title">ORACLE STUMPED!</div>
-      <p class="fail-msg">You've defeated me this time!<br>Tell me who you were thinking of so I can learn.</p>
+      <div class="fail-title">Ouch a miss !</div>
+      <p class="fail-msg">I'm wrong this time !<br>Tell me who you were thinking of so I can learn and improvise.</p>
       <input type="text" class="player-input" id="player-reveal" placeholder="Enter the player's name..."/>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-        <button class="btn-retry" onclick="submitReveal()">✨ SUBMIT & LEARN</button>
+        <button class="btn-retry" onclick="submitReveal()"> Help me improvise </button>
         <button class="btn-home" onclick="resetGame()">↩ HOME</button>
       </div>
-      <p id="reveal-thanks" style="margin-top:14px;color:rgba(0,229,255,0.6);font-size:0.85rem;display:none">Thanks! The oracle is learning... 🔮✨</p>
+      <p id="reveal-thanks" style="margin-top:14px;color:rgba(0,229,255,0.6);font-size:0.85rem;display:none">Thanks! Now I've got smarter hehehe... 🔮✨</p>
     </div>
   </div>
 
@@ -921,7 +1144,7 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
       <li>Keep that player in mind throughout the game</li>
       <li>Answer each question <strong style="color:var(--gold)">honestly</strong></li>
       <li>Use "Don't Know" if unsure — it helps!</li>
-      <li>The AI oracle will guess your player in 10 questions</li>
+      <li>The AI Wicky will guess your player in 8 questions</li>
       <li>See if SPINZO reads your mind 🔮</li>
     </ol>
     <button class="modal-close" onclick="closeModal()">Got it! Let's Play →</button>
@@ -932,13 +1155,30 @@ button:focus-visible,.ans-btn:focus-visible,.player-input:focus-visible,#mp-vol:
 const localHosts = new Set(['localhost', '127.0.0.1', '::1']);
 const BACKEND_URL = window.SPINZO_API_BASE
   || (window.location.protocol === 'file:' || localHosts.has(window.location.hostname)
-    ? 'http://localhost:8000'
+    ? 'http://127.0.0.1:8000'
     : '');
+const BACKEND_FALLBACK_URLS = Array.from(new Set([
+  BACKEND_URL,
+  'http://127.0.0.1:8000',
+  'http://localhost:8000'
+].filter(Boolean)));
+
+async function apiFetch(path, options) {
+  let lastError;
+  for (const baseUrl of BACKEND_FALLBACK_URLS) {
+    try {
+      return await fetch(`${baseUrl}${path}`, options);
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError || new Error(`Unable to reach SPINZO backend at ${BACKEND_FALLBACK_URLS.join(' or ')}`);
+}
 
 let gameState = {
   active: false,
   questionNum: 0,
-  maxQuestions: 10,
+  maxQuestions: 8,
   history: [],
   currentQuestion: '',
   confidence: 10,
@@ -956,8 +1196,590 @@ const thinkMsgs = [
 const reactions = [
   "Interesting choice...", "I see...", "Hmm, curious...",
   "This narrows it down...", "Getting closer...", "I sense it now...",
-  "Your player has a unique profile...", "The oracle speaks..."
+  "Your player has a unique profile...", "The Wicky speaks..."
 ];
+
+const SPRITE_BASE = 'public/assets/sprites/';
+const SPINZO_SPRITES = {
+  neutral: SPRITE_BASE + 'neutral.jpeg',
+  thinking: SPRITE_BASE + 'thinking.jpeg',
+  close: SPRITE_BASE + 'close.jpeg',
+  near: SPRITE_BASE + 'near%20guess.jpeg',
+  found: SPRITE_BASE + 'found.jpeg'
+};
+
+function getSpriteImage(spriteState, confidence = 0) {
+  if (spriteState === 'found' || spriteState === 'won' || spriteState === 'correct') return SPINZO_SPRITES.found;
+  if (spriteState === 'thinking' || spriteState === 'loading') return SPINZO_SPRITES.thinking;
+  if (spriteState === 'near' || spriteState === 'guessing' || confidence >= 70) return SPINZO_SPRITES.near;
+  if (spriteState === 'close' || spriteState === 'confident' || spriteState === 'smug' || confidence >= 45) return SPINZO_SPRITES.close;
+  return SPINZO_SPRITES.neutral;
+}
+
+function updateSpinzoSprite(state = 'neutral', confidence = 0) {
+  const sprite = document.getElementById('spinzo-sprite');
+  if (!sprite) return;
+  const spriteState =
+    state === 'celebrating' ? 'found' :
+    state === 'thinking' || state === 'focused' ? 'thinking' :
+    state === 'guessing' ? 'near' :
+    state === 'confident' || state === 'smug' ? 'close' :
+    state === 'shocked' || state === 'confused' || state === 'unsure' ? 'thinking' :
+    'neutral';
+  const nextSrc = getSpriteImage(spriteState, confidence);
+  if (!sprite.getAttribute('src') || !sprite.getAttribute('src').endsWith(nextSrc)) {
+    sprite.setAttribute('src', nextSrc);
+  }
+}
+
+let candidateBoard = [];
+let localCandidateEngine = {
+  ready: false,
+  loading: null,
+  allPlayers: [],
+  remaining: [],
+  scores: new Map(),
+  askedFields: new Set()
+};
+
+const BACKEND_ANSWER_TIMEOUT_MS = 16000;
+const MIN_QUESTIONS_BEFORE_GUESS = 8;
+
+const DEFAULT_CANDIDATE_POOL = [
+  'MS Dhoni',
+  'Virat Kohli',
+  'Rohit Sharma',
+  'Jasprit Bumrah',
+  'Suresh Raina',
+  'AB de Villiers',
+  'Hardik Pandya',
+  'Ravindra Jadeja',
+  'KL Rahul',
+  'Rashid Khan',
+  'Andre Russell',
+  'Shubman Gill'
+];
+
+const LOCAL_PLAYER_DATA_PATHS = [
+  'public/players.json',
+  './players.json',
+  '/players.json',
+  'backend/players.json',
+  '/backend/players.json'
+];
+
+const QUICK_FALLBACK_QUESTIONS = [
+  'Is your player an overseas/non-Indian player?',
+  'Is your player primarily a batter?',
+  'Is your player mainly a bowler?',
+  'Is your player a wicketkeeper?',
+  'Is your player an all-rounder?',
+  'Has your player captained an IPL side?',
+  'Is your player still active in the IPL?',
+  'Has your player won an IPL title?'
+];
+
+const LOCAL_MINI_PLAYERS = [
+  { short_name:'MS Dhoni', personal_info:{ is_indian:true }, identity:{ playing_role:'Wicketkeeper Captain', is_wicketkeeper:true, is_allrounder:false, is_spinner:false, is_pacer:false, is_lefthanded:false }, ipl_career:{ primary_franchise:'Chennai Super Kings', is_captain:true }, akinator_tags:{ is_active_2025:true, is_legend:true, known_for_big_runs:false, known_for_wickets:false, known_for_sixhitting:false, known_for_yorkers:false, franchise_icon:true, international_star:false, has_won_ipl:true, is_chase_master:false, is_anchor_batter:false, is_aggressive_player:false, is_calm_player:true } },
+  { short_name:'Virat Kohli', personal_info:{ is_indian:true }, identity:{ playing_role:'Top Order Batter', is_wicketkeeper:false, is_allrounder:false, is_spinner:false, is_pacer:false, is_lefthanded:false }, ipl_career:{ primary_franchise:'Royal Challengers Bengaluru', is_captain:true }, akinator_tags:{ is_active_2025:true, is_legend:true, known_for_big_runs:true, known_for_wickets:false, known_for_sixhitting:false, known_for_yorkers:false, franchise_icon:true, international_star:false, has_won_ipl:false, is_chase_master:true, is_anchor_batter:true, is_aggressive_player:true, is_calm_player:false } },
+  { short_name:'Rohit Sharma', personal_info:{ is_indian:true }, identity:{ playing_role:'Opener', is_wicketkeeper:false, is_allrounder:false, is_spinner:false, is_pacer:false, is_lefthanded:false }, ipl_career:{ primary_franchise:'Mumbai Indians', is_captain:true }, akinator_tags:{ is_active_2025:true, is_legend:true, known_for_big_runs:true, known_for_wickets:false, known_for_sixhitting:true, known_for_yorkers:false, franchise_icon:true, international_star:false, has_won_ipl:true, is_chase_master:false, is_anchor_batter:false, is_aggressive_player:true, is_calm_player:true } },
+  { short_name:'Jasprit Bumrah', personal_info:{ is_indian:true }, identity:{ playing_role:'Fast Bowler', is_wicketkeeper:false, is_allrounder:false, is_spinner:false, is_pacer:true, is_lefthanded:false }, ipl_career:{ primary_franchise:'Mumbai Indians', is_captain:false }, akinator_tags:{ is_active_2025:true, is_legend:true, known_for_big_runs:false, known_for_wickets:true, known_for_sixhitting:false, known_for_yorkers:true, franchise_icon:true, international_star:false, has_won_ipl:true, is_chase_master:false, is_anchor_batter:false, is_aggressive_player:false, is_calm_player:true } },
+  { short_name:'Suresh Raina', personal_info:{ is_indian:true }, identity:{ playing_role:'Middle Order Batter', is_wicketkeeper:false, is_allrounder:false, is_spinner:false, is_pacer:false, is_lefthanded:true }, ipl_career:{ primary_franchise:'Chennai Super Kings', is_captain:false }, akinator_tags:{ is_active_2025:false, is_legend:true, known_for_big_runs:true, known_for_wickets:false, known_for_sixhitting:true, known_for_yorkers:false, franchise_icon:true, international_star:false, has_won_ipl:true, is_chase_master:false, is_anchor_batter:false, is_aggressive_player:true, is_calm_player:false } },
+  { short_name:'AB de Villiers', personal_info:{ is_indian:false }, identity:{ playing_role:'Wicketkeeper Batter', is_wicketkeeper:true, is_allrounder:false, is_spinner:false, is_pacer:false, is_lefthanded:false }, ipl_career:{ primary_franchise:'Royal Challengers Bengaluru', is_captain:false }, akinator_tags:{ is_active_2025:false, is_legend:true, known_for_big_runs:true, known_for_wickets:false, known_for_sixhitting:true, known_for_yorkers:false, franchise_icon:true, international_star:true, has_won_ipl:false, is_chase_master:true, is_anchor_batter:false, is_aggressive_player:true, is_calm_player:false } },
+  { short_name:'Rashid Khan', personal_info:{ is_indian:false }, identity:{ playing_role:'Wrist Spinner Allrounder', is_wicketkeeper:false, is_allrounder:true, is_spinner:true, is_pacer:false, is_lefthanded:false }, ipl_career:{ primary_franchise:'Gujarat Titans', is_captain:false }, akinator_tags:{ is_active_2025:true, is_legend:true, known_for_big_runs:false, known_for_wickets:true, known_for_sixhitting:false, known_for_yorkers:false, franchise_icon:true, international_star:true, has_won_ipl:true, is_chase_master:false, is_anchor_batter:false, is_aggressive_player:true, is_calm_player:false } },
+  { short_name:'Andre Russell', personal_info:{ is_indian:false }, identity:{ playing_role:'Power Hitting Allrounder', is_wicketkeeper:false, is_allrounder:true, is_spinner:false, is_pacer:true, is_lefthanded:false }, ipl_career:{ primary_franchise:'Kolkata Knight Riders', is_captain:false }, akinator_tags:{ is_active_2025:true, is_legend:true, known_for_big_runs:false, known_for_wickets:true, known_for_sixhitting:true, known_for_yorkers:false, franchise_icon:true, international_star:true, has_won_ipl:true, is_chase_master:false, is_anchor_batter:false, is_aggressive_player:true, is_calm_player:false } },
+  { short_name:'David Warner', personal_info:{ is_indian:false }, identity:{ playing_role:'Opener', is_wicketkeeper:false, is_allrounder:false, is_spinner:false, is_pacer:false, is_lefthanded:true }, ipl_career:{ primary_franchise:'Sunrisers Hyderabad', is_captain:true }, akinator_tags:{ is_active_2025:true, is_legend:true, known_for_big_runs:true, known_for_wickets:false, known_for_sixhitting:true, known_for_yorkers:false, franchise_icon:true, international_star:true, has_won_ipl:true, is_chase_master:false, is_anchor_batter:false, is_aggressive_player:true, is_calm_player:false } },
+  { short_name:'Faf du Plessis', personal_info:{ is_indian:false }, identity:{ playing_role:'Top Order Batter', is_wicketkeeper:false, is_allrounder:false, is_spinner:false, is_pacer:false, is_lefthanded:false }, ipl_career:{ primary_franchise:'Royal Challengers Bengaluru', is_captain:true }, akinator_tags:{ is_active_2025:true, is_legend:false, known_for_big_runs:true, known_for_wickets:false, known_for_sixhitting:false, known_for_yorkers:false, franchise_icon:false, international_star:true, has_won_ipl:true, is_chase_master:false, is_anchor_batter:true, is_aggressive_player:false, is_calm_player:true } },
+  { short_name:'Pat Cummins', personal_info:{ is_indian:false }, identity:{ playing_role:'Fast Bowler', is_wicketkeeper:false, is_allrounder:false, is_spinner:false, is_pacer:true, is_lefthanded:false }, ipl_career:{ primary_franchise:'Sunrisers Hyderabad', is_captain:true }, akinator_tags:{ is_active_2025:true, is_legend:false, known_for_big_runs:false, known_for_wickets:true, known_for_sixhitting:false, known_for_yorkers:false, franchise_icon:false, international_star:true, has_won_ipl:false, is_chase_master:false, is_anchor_batter:false, is_aggressive_player:false, is_calm_player:true } },
+  { short_name:'Kane Williamson', personal_info:{ is_indian:false }, identity:{ playing_role:'Top Order Batter', is_wicketkeeper:false, is_allrounder:false, is_spinner:false, is_pacer:false, is_lefthanded:false }, ipl_career:{ primary_franchise:'Sunrisers Hyderabad', is_captain:true }, akinator_tags:{ is_active_2025:true, is_legend:false, known_for_big_runs:true, known_for_wickets:false, known_for_sixhitting:false, known_for_yorkers:false, franchise_icon:false, international_star:true, has_won_ipl:false, is_chase_master:false, is_anchor_batter:true, is_aggressive_player:false, is_calm_player:true } },
+  { short_name:'Hardik Pandya', personal_info:{ is_indian:true }, identity:{ playing_role:'Fast Bowling Allrounder', is_wicketkeeper:false, is_allrounder:true, is_spinner:false, is_pacer:true, is_lefthanded:false }, ipl_career:{ primary_franchise:'Mumbai Indians', is_captain:true }, akinator_tags:{ is_active_2025:true, is_legend:false, known_for_big_runs:false, known_for_wickets:true, known_for_sixhitting:true, known_for_yorkers:false, franchise_icon:false, international_star:false, has_won_ipl:true, is_chase_master:false, is_anchor_batter:false, is_aggressive_player:true, is_calm_player:false } },
+  { short_name:'Ravindra Jadeja', personal_info:{ is_indian:true }, identity:{ playing_role:'Allrounder', is_wicketkeeper:false, is_allrounder:true, is_spinner:true, is_pacer:false, is_lefthanded:true }, ipl_career:{ primary_franchise:'Chennai Super Kings', is_captain:false }, akinator_tags:{ is_active_2025:true, is_legend:true, known_for_big_runs:false, known_for_wickets:true, known_for_sixhitting:false, known_for_yorkers:false, franchise_icon:true, international_star:false, has_won_ipl:true, is_chase_master:false, is_anchor_batter:false, is_aggressive_player:false, is_calm_player:true } },
+  { short_name:'KL Rahul', personal_info:{ is_indian:true }, identity:{ playing_role:'Wicketkeeper Batter', is_wicketkeeper:true, is_allrounder:false, is_spinner:false, is_pacer:false, is_lefthanded:false }, ipl_career:{ primary_franchise:'Lucknow Super Giants', is_captain:true }, akinator_tags:{ is_active_2025:true, is_legend:false, known_for_big_runs:true, known_for_wickets:false, known_for_sixhitting:false, known_for_yorkers:false, franchise_icon:false, international_star:false, has_won_ipl:false, is_chase_master:false, is_anchor_batter:true, is_aggressive_player:false, is_calm_player:true } },
+  { short_name:'Shubman Gill', personal_info:{ is_indian:true }, identity:{ playing_role:'Opener', is_wicketkeeper:false, is_allrounder:false, is_spinner:false, is_pacer:false, is_lefthanded:false }, ipl_career:{ primary_franchise:'Gujarat Titans', is_captain:true }, akinator_tags:{ is_active_2025:true, is_legend:false, known_for_big_runs:true, known_for_wickets:false, known_for_sixhitting:false, known_for_yorkers:false, franchise_icon:false, international_star:false, has_won_ipl:false, is_chase_master:false, is_anchor_batter:true, is_aggressive_player:false, is_calm_player:true } }
+];
+
+function getNestedValue(obj, path) {
+  return String(path || '').split('.').reduce((value, part) => (
+    value && typeof value === 'object' ? value[part] : undefined
+  ), obj);
+}
+
+function getPlayerDisplayName(player) {
+  return player?.short_name || player?.full_name || player?.name || 'Unknown Player';
+}
+
+function playerTeamName(player) {
+  return getNestedValue(player, 'ipl_career.primary_franchise')
+    || getNestedValue(player, 'current_team')
+    || getNestedValue(player, 'team')
+    || 'IPL Team';
+}
+
+function truthyField(path) {
+  return player => {
+    const value = getNestedValue(player, path);
+    if (Array.isArray(value)) return value.length > 0;
+    return Boolean(value);
+  };
+}
+
+function roleIncludes(...terms) {
+  return player => {
+    const role = String(getNestedValue(player, 'identity.playing_role') || '').toLowerCase();
+    const cluster = String(getNestedValue(player, 'identity.primary_role_cluster') || '').toLowerCase();
+    return terms.some(term => role.includes(term) || cluster.includes(term));
+  };
+}
+
+const LOCAL_QUESTION_FEATURES = [
+  { id: 'personal_info.is_indian', question: 'Is your player an overseas/non-Indian player?', test: player => !getNestedValue(player, 'personal_info.is_indian') },
+  { id: 'identity.is_wicketkeeper', question: 'Is your player a wicketkeeper?', test: truthyField('identity.is_wicketkeeper') },
+  { id: 'identity.is_allrounder', question: 'Is your player an all-rounder?', test: truthyField('identity.is_allrounder') },
+  { id: 'identity.is_spinner', question: 'Is your player mainly a spinner?', test: truthyField('identity.is_spinner') },
+  { id: 'identity.is_pacer', question: 'Is your player mainly a fast bowler?', test: truthyField('identity.is_pacer') },
+  { id: 'identity.is_lefthanded', question: 'Is your player left-handed?', test: truthyField('identity.is_lefthanded') },
+  { id: 'ipl_career.is_captain', question: 'Has your player captained an IPL side?', test: truthyField('ipl_career.is_captain') },
+  { id: 'akinator_tags.is_active_2025', question: 'Is your player still active in the 2025 IPL pool?', test: truthyField('akinator_tags.is_active_2025') },
+  { id: 'akinator_tags.is_legend', question: 'Is your player considered an IPL legend?', test: truthyField('akinator_tags.is_legend') },
+  { id: 'akinator_tags.known_for_big_runs', question: 'Is your player known mainly for scoring big runs?', test: truthyField('akinator_tags.known_for_big_runs') },
+  { id: 'akinator_tags.known_for_wickets', question: 'Is your player known mainly for taking wickets?', test: truthyField('akinator_tags.known_for_wickets') },
+  { id: 'akinator_tags.known_for_sixhitting', question: 'Is your player known for six-hitting?', test: truthyField('akinator_tags.known_for_sixhitting') },
+  { id: 'akinator_tags.known_for_yorkers', question: 'Is your player known for yorkers?', test: truthyField('akinator_tags.known_for_yorkers') },
+  { id: 'akinator_tags.franchise_icon', question: 'Is your player a franchise icon?', test: truthyField('akinator_tags.franchise_icon') },
+  { id: 'akinator_tags.international_star', question: 'Is your player an international star?', test: truthyField('akinator_tags.international_star') },
+  { id: 'akinator_tags.has_won_ipl', question: 'Has your player won an IPL title?', test: truthyField('akinator_tags.has_won_ipl') },
+  { id: 'akinator_tags.is_chase_master', question: 'Is your player known as a chase master?', test: truthyField('akinator_tags.is_chase_master') },
+  { id: 'akinator_tags.is_anchor_batter', question: 'Is your player more of an anchor batter?', test: truthyField('akinator_tags.is_anchor_batter') },
+  { id: 'akinator_tags.is_aggressive_player', question: 'Is your player known for an aggressive style?', test: truthyField('akinator_tags.is_aggressive_player') },
+  { id: 'akinator_tags.is_calm_player', question: 'Is your player known for being calm under pressure?', test: truthyField('akinator_tags.is_calm_player') },
+  { id: 'identity.playing_role.batter', question: 'Is your player primarily a batter?', test: roleIncludes('batter', 'opener') },
+  { id: 'identity.playing_role.bowler', question: 'Is your player primarily a bowler?', test: roleIncludes('bowler', 'spinner') }
+];
+
+function resetLocalCandidateEngine() {
+  const players = localCandidateEngine.allPlayers;
+  localCandidateEngine.remaining = players.slice();
+  localCandidateEngine.scores = new Map(players.map(player => [getPlayerDisplayName(player), 1]));
+  localCandidateEngine.askedFields = new Set();
+}
+
+async function initLocalCandidateEngine() {
+  if (localCandidateEngine.ready) {
+    resetLocalCandidateEngine();
+    return true;
+  }
+  if (localCandidateEngine.loading) return localCandidateEngine.loading;
+
+  localCandidateEngine.loading = (async () => {
+    for (const path of LOCAL_PLAYER_DATA_PATHS) {
+      try {
+        const resp = await fetch(path, { cache: 'force-cache' });
+        if (!resp.ok) continue;
+        const data = await resp.json();
+        const players = Array.isArray(data) ? data : data.players;
+        if (Array.isArray(players) && players.length) {
+          localCandidateEngine.allPlayers = players;
+          localCandidateEngine.ready = true;
+          resetLocalCandidateEngine();
+          return true;
+        }
+      } catch (e) {}
+    }
+    localCandidateEngine.allPlayers = LOCAL_MINI_PLAYERS;
+    localCandidateEngine.ready = true;
+    resetLocalCandidateEngine();
+    return true;
+  })();
+
+  return localCandidateEngine.loading;
+}
+
+function inferFeatureFromQuestion(questionText) {
+  const q = String(questionText || '').toLowerCase();
+  const hasAny = words => words.some(word => q.includes(word));
+
+  if (hasAny(['non indian', 'non-indian', 'overseas', 'foreign', 'international player'])) {
+    return { id: 'personal_info.is_indian', test: player => !getNestedValue(player, 'personal_info.is_indian') };
+  }
+  if (hasAny(['indian', 'nationality'])) return { id: 'personal_info.is_indian', test: truthyField('personal_info.is_indian') };
+  if (hasAny(['wicketkeeper', 'wicket-keeper', 'keeper'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'identity.is_wicketkeeper');
+  if (hasAny(['all-rounder', 'allrounder', 'all rounder'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'identity.is_allrounder');
+  if (hasAny(['spinner', 'spin bowler', 'wrist spin', 'leg spin', 'off spin'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'identity.is_spinner');
+  if (hasAny(['fast bowler', 'pace bowler', 'pacer', 'yorker', 'death overs'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'identity.is_pacer');
+  if (hasAny(['left-handed', 'left handed', 'left hand'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'identity.is_lefthanded');
+  if (hasAny(['right-handed', 'right handed', 'right hand'])) return { id: 'identity.is_lefthanded', test: player => !getNestedValue(player, 'identity.is_lefthanded') };
+  if (hasAny(['captain', 'captained', 'led '])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'ipl_career.is_captain');
+  if (hasAny(['still playing', 'active', '2025'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.is_active_2025');
+  if (hasAny(['retired', 'former player'])) return { id: 'akinator_tags.is_active_2025', test: player => !getNestedValue(player, 'akinator_tags.is_active_2025') };
+  if (hasAny(['legend', 'iconic'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.is_legend');
+  if (hasAny(['six', 'power hitter', 'big hitter'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.known_for_sixhitting');
+  if (hasAny(['big runs', 'run scorer', 'runs', 'batsman', 'batter', 'opener'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.known_for_big_runs');
+  if (hasAny(['wickets', 'wicket taker', 'bowler'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.known_for_wickets');
+  if (hasAny(['won ipl', 'ipl title', 'champion', 'trophy'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.has_won_ipl');
+  if (hasAny(['chase master', 'chasing'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.is_chase_master');
+  if (hasAny(['anchor'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.is_anchor_batter');
+  if (hasAny(['aggressive'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.is_aggressive_player');
+  if (hasAny(['calm'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.is_calm_player');
+  if (hasAny(['franchise icon'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.franchise_icon');
+
+  return null;
+}
+
+function applyLocalAnswer(answer, questionText, suppliedFeature) {
+  if (!localCandidateEngine.ready) return false;
+  const normalized = String(answer || '').toLowerCase();
+  if (['unknown', 'maybe', 'probably', "don't know", 'dont know'].includes(normalized)) return false;
+
+  const feature = suppliedFeature || inferFeatureFromQuestion(questionText);
+  if (!feature || typeof feature.test !== 'function') return false;
+  localCandidateEngine.askedFields.add(feature.id);
+
+  const wantsMatch = normalized === 'yes' || normalized === 'y';
+  const nextRemaining = localCandidateEngine.remaining.filter(player => Boolean(feature.test(player)) === wantsMatch);
+  if (nextRemaining.length) {
+    localCandidateEngine.remaining = nextRemaining;
+  }
+
+  localCandidateEngine.allPlayers.forEach(player => {
+    const name = getPlayerDisplayName(player);
+    const current = localCandidateEngine.scores.get(name) || 1;
+    const matched = Boolean(feature.test(player)) === wantsMatch;
+    localCandidateEngine.scores.set(name, current * (matched ? 2.4 : 0.18));
+  });
+
+  return true;
+}
+
+function getLocalCandidateRows(limit = 5) {
+  if (!localCandidateEngine.ready || !localCandidateEngine.remaining.length) return [];
+  const remainingNames = new Set(localCandidateEngine.remaining.map(getPlayerDisplayName));
+  const scored = localCandidateEngine.remaining
+    .map(player => ({
+      player,
+      name: getPlayerDisplayName(player),
+      score: localCandidateEngine.scores.get(getPlayerDisplayName(player)) || 1
+    }))
+    .filter(item => remainingNames.has(item.name))
+    .sort((a, b) => b.score - a.score);
+
+  const total = scored.reduce((sum, item) => sum + item.score, 0) || scored.length || 1;
+  return scored.slice(0, limit).map(item => ({
+    name: item.name,
+    confidence: normalizeConfidenceValue((item.score / total) * 100, Math.max(1, 100 / total)),
+    player: item.player
+  }));
+}
+
+function selectLocalQuestion() {
+  if (!localCandidateEngine.ready) return null;
+  const pool = localCandidateEngine.remaining;
+  if (pool.length <= 1) return null;
+
+  let best = null;
+  for (const feature of LOCAL_QUESTION_FEATURES) {
+    if (localCandidateEngine.askedFields.has(feature.id)) continue;
+    const yesCount = pool.reduce((count, player) => count + (feature.test(player) ? 1 : 0), 0);
+    const noCount = pool.length - yesCount;
+    if (!yesCount || !noCount) continue;
+    const pYes = yesCount / pool.length;
+    const pNo = noCount / pool.length;
+    const entropy = -(pYes * Math.log2(pYes) + pNo * Math.log2(pNo));
+    if (!best || entropy > best.entropy) best = { ...feature, entropy };
+  }
+  return best;
+}
+
+function localConfidence() {
+  const rows = getLocalCandidateRows(1);
+  const pool = Math.max(localCandidateEngine.remaining.length, 1);
+  const progressBoost = Math.min(18, gameState.questionNum * 3);
+  return normalizeConfidenceValue(Math.max(rows[0]?.confidence || 0, (100 / pool) + progressBoost), gameState.confidence || 10);
+}
+
+function canRevealGuess() {
+  return gameState.questionNum >= Math.min(MIN_QUESTIONS_BEFORE_GUESS, gameState.maxQuestions || MIN_QUESTIONS_BEFORE_GUESS);
+}
+
+function buildLocalGuessData() {
+  const [top] = getLocalCandidateRows(1);
+  const player = top?.player || localCandidateEngine.remaining[0];
+  const playerName = getPlayerDisplayName(player);
+  return {
+    action: 'guess',
+    playerName,
+    playerTeam: playerTeamName(player),
+    playerEmoji: 'BAT',
+    confidence: Math.max(localConfidence(), normalizeConfidenceValue(top?.confidence, 55)),
+    guessReason: `Based on your answers, ${playerName} is the strongest match in the narrowed candidate list.`
+  };
+}
+
+function renderLocalNextStep(reason = 'Local read') {
+  if (!localCandidateEngine.ready) return false;
+  const shouldGuess = canRevealGuess();
+
+  gameState.confidence = localConfidence();
+  document.getElementById('confbar').style.width = gameState.confidence + '%';
+  document.getElementById('confpct').textContent = gameState.confidence + '%';
+  updateCandidateTable({}, reason);
+
+  if (shouldGuess) {
+    CharEngine.updateCharacterState({ confidence: gameState.confidence, gameState: 'guessing' });
+    CharEngine.updateParticles('guessing', gameState.confidence);
+    setTimeout(() => showFinalGuess(buildLocalGuessData()), 500);
+    return true;
+  }
+
+  const next = selectLocalQuestion();
+  if (!next) {
+    return renderQuickFallbackQuestion(reason);
+  }
+
+  gameState.currentQuestion = next.question;
+  gameState.currentLocalFeature = next;
+  const qText = document.getElementById('q-text');
+  qText.textContent = next.question;
+  qText.style.animation = 'none';
+  void qText.offsetWidth;
+  qText.style.animation = 'fadeIn 0.4s ease';
+  document.getElementById('ai-reaction').textContent = '◈ Fast local read...';
+  CharEngine.updateCharacterState({ confidence: gameState.confidence, questionText: next.question, gameState: 'question' });
+  CharEngine.updateParticles(CharEngine.currentState, gameState.confidence);
+  updateDots();
+  return true;
+}
+
+function renderQuestionText(question, reason = 'Fast read') {
+  gameState.currentQuestion = question;
+  gameState.currentLocalFeature = inferFeatureFromQuestion(question);
+  const qText = document.getElementById('q-text');
+  qText.textContent = question;
+  qText.style.animation = 'none';
+  void qText.offsetWidth;
+  qText.style.animation = 'fadeIn 0.4s ease';
+  document.getElementById('ai-reaction').textContent = '◈ ' + reason + '...';
+  CharEngine.updateCharacterState({ confidence: gameState.confidence, questionText: question, gameState: 'question' });
+  CharEngine.updateParticles(CharEngine.currentState, gameState.confidence);
+  updateDots();
+}
+
+function renderQuickFallbackQuestion(reason = 'Fast read') {
+  const asked = new Set(gameState.history.map(item => item.q));
+  const question = QUICK_FALLBACK_QUESTIONS.find(q => !asked.has(q))
+    || QUICK_FALLBACK_QUESTIONS[gameState.questionNum % QUICK_FALLBACK_QUESTIONS.length];
+  const fallbackConfidence = Math.min(75, Math.max(gameState.confidence || 10, 12 + gameState.questionNum * 7));
+  gameState.confidence = canRevealGuess() ? Math.max(fallbackConfidence, 55) : fallbackConfidence;
+  document.getElementById('confbar').style.width = gameState.confidence + '%';
+  document.getElementById('confpct').textContent = gameState.confidence + '%';
+  updateCandidateTable({}, reason);
+  renderQuestionText(question, reason);
+  return true;
+}
+
+function normalizeConfidenceValue(value, fallback = 0) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return Math.max(0, Math.min(99, Math.round(fallback)));
+  return Math.max(0, Math.min(99, Math.round(n <= 1 ? n * 100 : n)));
+}
+
+function candidateNameFrom(item, index) {
+  if (typeof item === 'string') return item;
+  if (!item || typeof item !== 'object') return `Candidate ${index + 1}`;
+  return item.name || item.playerName || item.player_name || item.player || item.short_name || item.displayName || `Candidate ${index + 1}`;
+}
+
+function candidateConfidenceFrom(item, fallback) {
+  if (!item || typeof item !== 'object') return normalizeConfidenceValue(fallback, fallback);
+  const raw = item.confidence ?? item.score ?? item.probability ?? item.prob ?? item.percentage ?? item.likelihood ?? item.chance;
+  return normalizeConfidenceValue(raw, fallback);
+}
+
+function extractCandidateRows(data = {}) {
+  const candidateSources = [
+    data.possible_candidates,
+    data.possibleCandidates,
+    data.top_candidates,
+    data.topCandidates,
+    data.top_players,
+    data.topPlayers,
+    data.candidates,
+    data.rankings,
+    data.probabilities
+  ];
+
+  let raw = candidateSources.find(source => source && (Array.isArray(source) || typeof source === 'object'));
+  if (raw && !Array.isArray(raw) && typeof raw === 'object') {
+    raw = Object.entries(raw).map(([name, confidence]) => ({ name, confidence }));
+  }
+
+  if (Array.isArray(raw) && raw.length) {
+    return raw.slice(0, 5).map((item, index) => ({
+      name: candidateNameFrom(item, index),
+      confidence: candidateConfidenceFrom(item, Math.max((gameState.confidence || 10) - index * 8, 5)),
+      reason: item && typeof item === 'object'
+        ? (item.reason || item.whyLower || item.why_lower || item.justification || item.explanation || '')
+        : ''
+    }));
+  }
+
+  if (data.playerName || data.prediction || data.top_current_prediction) {
+    return [{
+      name: data.playerName || data.prediction || data.top_current_prediction,
+      confidence: normalizeConfidenceValue(data.confidence ?? gameState.confidence ?? 75, 75)
+    }];
+  }
+
+  return [];
+}
+
+function getFallbackCandidates() {
+  const localRows = getLocalCandidateRows(5);
+  if (localRows.length) return localRows;
+
+  const base = normalizeConfidenceValue(gameState.confidence || 10, 10);
+  const knownNames = new Set(candidateBoard.map(item => item.name));
+  const filledCandidates = [
+    ...candidateBoard,
+    ...DEFAULT_CANDIDATE_POOL
+      .filter(name => !knownNames.has(name))
+      .map(name => ({ name }))
+  ];
+
+  return filledCandidates.slice(0, 5).map((item, index) => {
+    const fallbackScore = index === 0
+      ? base
+      : Math.max(base - 4 - index * 5, Math.max(2, 8 - index));
+    return {
+      name: item.name,
+      confidence: normalizeConfidenceValue(item.confidence, fallbackScore)
+    };
+  });
+}
+
+function updateCandidateTable(data = {}, label = 'Live') {
+  const body = document.getElementById('candidate-rows');
+  const state = document.getElementById('candidate-state');
+  if (!body) return;
+
+  const extracted = extractCandidateRows(data);
+  if (extracted.length) candidateBoard = extracted;
+  const rows = getFallbackCandidates();
+
+  if (state) state.textContent = label;
+  body.innerHTML = rows.map(row => {
+    const conf = normalizeConfidenceValue(row.confidence, 0);
+    return `<tr><td title="${escapeHtml(row.name)}">${escapeHtml(row.name)}</td><td><span class="candidate-score"><span class="candidate-bar"><span class="candidate-bar-fill" style="width:${conf}%"></span></span>${conf}%</span></td></tr>`;
+  }).join('');
+}
+
+function normalizePlayerName(name) {
+  return String(name || '').trim().toLowerCase();
+}
+
+function getDecisiveClue() {
+  const useful = [...gameState.history].reverse().find(item =>
+    item && item.q && item.a && item.a !== "Don't know"
+  );
+  if (!useful) return null;
+  return {
+    question: useful.q,
+    answer: useful.a
+  };
+}
+
+function buildGuessReason(data, winnerName, runnerUpName) {
+  const clue = getDecisiveClue();
+  if (clue && runnerUpName) {
+    return `Your ${clue.answer.toUpperCase()} answer to "${clue.question}" made ${winnerName} fit the pattern better than ${runnerUpName}. That clue became the main separator once the candidate list narrowed.`;
+  }
+  if (clue) {
+    return `Your ${clue.answer.toUpperCase()} answer to "${clue.question}" is the strongest clue pointing toward ${winnerName}.`;
+  }
+  const supplied = data.guessReason || data.reason || data.justification || data.explanation;
+  if (supplied) return supplied;
+  return `Based on your answers, ${winnerName} has the strongest match among the remaining IPL candidates.`;
+}
+
+function buildAlternativeReason(candidateName, winnerName) {
+  const clue = getDecisiveClue();
+  if (clue) {
+    return `${winnerName} aligned more strongly with your ${clue.answer.toUpperCase()} on "${clue.question}".`;
+  }
+  return `${candidateName} stayed possible, but ${winnerName} had the higher combined confidence.`;
+}
+
+function getFinalCandidateRows(data = {}) {
+  const winnerName = data.playerName || data.prediction || document.getElementById('guess-name')?.textContent || 'Unknown Player';
+  const winnerKey = normalizePlayerName(winnerName);
+
+  const extracted = extractCandidateRows(data)
+    .filter(row => normalizePlayerName(row.name) !== winnerKey);
+  if (extracted.length) return extracted.slice(0, 5);
+
+  const localRows = getLocalCandidateRows(8)
+    .filter(row => normalizePlayerName(row.name) !== winnerKey);
+  if (localRows.length) return localRows.slice(0, 5);
+
+  const boardRows = candidateBoard
+    .filter(row => normalizePlayerName(row.name) !== winnerKey);
+  if (boardRows.length) {
+    return boardRows.slice(0, 5).map((row, index) => ({
+      ...row,
+      confidence: normalizeConfidenceValue(row.confidence, Math.max(2, 15 - index * 3))
+    }));
+  }
+
+  return [];
+}
+
+function renderFinalAnalysis(data = {}) {
+  const winnerName = data.playerName || data.prediction || 'Unknown Player';
+  const alternatives = getFinalCandidateRows(data);
+  const runnerUp = alternatives[0]?.name || 'the next closest candidate';
+  const reasonEl = document.getElementById('guess-reason');
+  const xfactorEl = document.getElementById('guess-xfactor');
+  const rowsEl = document.getElementById('final-candidate-rows');
+  const clue = getDecisiveClue();
+
+  if (reasonEl) {
+    reasonEl.textContent = buildGuessReason(data, winnerName, runnerUp);
+  }
+  if (xfactorEl) {
+    xfactorEl.textContent = clue
+      ? `X-factor over ${runnerUp}: your ${clue.answer.toUpperCase()} on "${clue.question}" pushed ${winnerName} ahead.`
+      : `X-factor over ${runnerUp}: ${winnerName} finished with the strongest confidence after the available clues.`;
+  }
+  if (rowsEl) {
+    rowsEl.innerHTML = alternatives.length ? alternatives.map(row => {
+      const conf = normalizeConfidenceValue(row.confidence, 0);
+      const lowerReason = row.reason || row.whyLower || buildAlternativeReason(row.name, winnerName);
+      return `<tr><td title="${escapeHtml(row.name)}">${escapeHtml(row.name)}</td><td><span class="candidate-score"><span class="candidate-bar"><span class="candidate-bar-fill" style="width:${conf}%"></span></span>${conf}%</span></td><td class="alt-reason">${escapeHtml(lowerReason)}</td></tr>`;
+    }).join('') : `<tr><td colspan="3" class="alt-reason">No close alternatives remained after your answers.</td></tr>`;
+  }
+}
+
+function reconcileFinalGuessData(data = {}) {
+  if (!localCandidateEngine.ready || !localCandidateEngine.remaining.length) return data;
+  const incomingName = data.playerName || data.prediction || '';
+  const remainingNames = new Set(localCandidateEngine.remaining.map(player => normalizePlayerName(getPlayerDisplayName(player))));
+  if (incomingName && remainingNames.has(normalizePlayerName(incomingName))) return data;
+  const localGuess = buildLocalGuessData();
+  return {
+    ...data,
+    ...localGuess,
+    guessReason: localGuess.guessReason
+  };
+}
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  }[ch]));
+}
 
 /* ============================================
    DYNAMIC AI CHARACTER ENGINE
@@ -968,7 +1790,7 @@ const CharEngine = {
   blinkInterval: null,
 
   states: {
-    idle:        { glow:'rgba(0,229,255,0.4)',   eye:'#00e5ff', status:'ORACLE ONLINE',    energyColor:'linear-gradient(90deg,#1e90ff,#00e5ff)' },
+    idle:        { glow:'rgba(0,229,255,0.4)',   eye:'#00e5ff', status:'Wicky ONLINE',    energyColor:'linear-gradient(90deg,#1e90ff,#00e5ff)' },
     thinking:    { glow:'rgba(124,58,237,0.5)',  eye:'#b57bee', status:'SCANNING DATA',    energyColor:'linear-gradient(90deg,#7c3aed,#b57bee)' },
     focused:     { glow:'rgba(0,180,255,0.5)',   eye:'#40c8ff', status:'ANALYZING',        energyColor:'linear-gradient(90deg,#0070cc,#40c8ff)' },
     confident:   { glow:'rgba(0,229,255,0.7)',   eye:'#00e5ff', status:'NARROWING DOWN',   energyColor:'linear-gradient(90deg,#00aadd,#00e5ff)' },
@@ -982,7 +1804,7 @@ const CharEngine = {
   },
 
   bubbleLines: {
-    idle:        ['I am listening...', 'Think of your player...', 'The oracle awaits...'],
+    idle:        ['I am listening...', 'Think of your player...', 'The Wicky awaits...'],
     thinking:    ['Consulting archives...', 'Cross-referencing...', 'Searching records...'],
     focused:     ['Interesting...', 'Narrowing it down...', 'Detecting patterns...'],
     confident:   ['I see it clearly now...', 'Getting warmer...', 'My energy grows...'],
@@ -991,7 +1813,7 @@ const CharEngine = {
     confused:    ["You're testing me...", 'This changes much...', 'Interesting data...'],
     smug:        ['Almost certain...', 'I know who it is...', "Don't hide it..."],
     guessing:    ['I have seen enough!', 'The vision is clear!', 'I know your player!'],
-    celebrating: ['I read your mind!', 'The oracle prevails!', 'Did you doubt me?'],
+    celebrating: ['I read your mind!', 'The Wicky prevails!', 'Did you doubt me?'],
     shocked:     ['Impossible...', 'I was so sure...', 'You bested me...'],
   },
 
@@ -1080,8 +1902,9 @@ const CharEngine = {
     // Update sidebar displays
     const cqd = document.getElementById('char-qnum-display');
     const ccd = document.getElementById('char-conf-display');
-    if(cqd) cqd.textContent = `${gameState.questionNum} / 10`;
+    if(cqd) cqd.textContent = `${gameState.questionNum} / ${gameState.maxQuestions}`;
     if(ccd) ccd.textContent = `${gameState.confidence}%`;
+    updateSpinzoSprite(state, gameState.confidence);
   },
 
   applyExpression(state, questionText) {
@@ -1326,6 +2149,8 @@ function closeModal(e) {
 
 function updateDots() {
   const container = document.getElementById('pdots');
+  const qnum = document.getElementById('qnum');
+  if (qnum) qnum.textContent = Math.min(gameState.questionNum + 1, gameState.maxQuestions);
   container.innerHTML = '';
   for (let i = 0; i < gameState.maxQuestions; i++) {
     const d = document.createElement('div');
@@ -1358,10 +2183,13 @@ function setThinking(show) {
 async function startGame() {
   SFX.resume(); SFX.batHit();
   flashScreen('rgba(255,215,0,0.12)', 180);
-  gameState = { active:true, questionNum:0, maxQuestions:10, history:[], currentQuestion:'', confidence:10, gameId:null };
+  gameState = { active:true, questionNum:0, maxQuestions:8, history:[], currentQuestion:'', currentLocalFeature:null, confidence:10, gameId:null, localMode:false };
+  candidateBoard = [];
+  await initLocalCandidateEngine();
   showPage('gameplay');
   document.getElementById('gameplay').style.flexDirection = '';
   updateDots();
+  updateCandidateTable({}, 'Scouting');
   CharEngine.init();
   attachRipples();
   await gameStart();
@@ -1370,11 +2198,19 @@ async function startGame() {
 async function gameStart() {
   try {
     setThinking(true);
-    const resp = await fetch(`${BACKEND_URL}/game/start`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({})
-    });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), BACKEND_ANSWER_TIMEOUT_MS);
+    let resp;
+    try {
+      resp = await apiFetch('/game/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
+        body: JSON.stringify({})
+      });
+    } finally {
+      clearTimeout(timeoutId);
+    }
     
     // Check if response is OK before parsing
     if (!resp.ok) {
@@ -1392,10 +2228,12 @@ async function gameStart() {
 
     gameState.gameId = data.game_id;
     gameState.currentQuestion = data.question;
+    gameState.currentLocalFeature = inferFeatureFromQuestion(data.question);
     gameState.confidence = data.confidence || 10;
     document.getElementById('confbar').style.width = gameState.confidence + '%';
     document.getElementById('confpct').textContent = gameState.confidence + '%';
     document.getElementById('q-text').textContent = data.question;
+    updateCandidateTable(data, 'Scouting');
 
     CharEngine.updateCharacterState({ confidence: gameState.confidence, questionText: data.question, gameState: 'question' });
     CharEngine.updateParticles(CharEngine.currentState, gameState.confidence);
@@ -1403,20 +2241,34 @@ async function gameStart() {
     if (data.reaction) {
       document.getElementById('ai-reaction').textContent = '◈ ' + data.reaction;
     } else {
-      document.getElementById('ai-reaction').textContent = '◈ The oracle awakens...';
+      document.getElementById('ai-reaction').textContent = '◈ The Wicky awakens...';
     }
     updateDots();
   } catch(e) {
     setThinking(false);
     console.error('Game start error:', e);
     gameState.gameId = null;  // Explicitly clear gameId on error
+    if (localCandidateEngine.ready) {
+      gameState.localMode = true;
+      renderQuickFallbackQuestion('Fast start');
+      return;
+    }
     document.getElementById('q-text').textContent = 'Server error: ' + e.message;
-    document.getElementById('ai-reaction').textContent = '◈ The oracle lost focus...';
+    document.getElementById('ai-reaction').textContent = '◈ The Wicky lost focus...';
+    updateCandidateTable({}, 'Offline');
     CharEngine.setState('idle');
   }
 }
 
 async function gameAnswer(answer) {
+  if (gameState.localMode) {
+    setThinking(true);
+    await new Promise(r => setTimeout(r, 350));
+    setThinking(false);
+    renderLocalNextStep('Fast read');
+    return;
+  }
+
   try {
     // Validate gameId before sending answer
     if (!gameState.gameId) {
@@ -1424,14 +2276,22 @@ async function gameAnswer(answer) {
     }
     
     setThinking(true);
-    const resp = await fetch(`${BACKEND_URL}/game/answer`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        game_id: gameState.gameId,
-        answer: answer
-      })
-    });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), BACKEND_ANSWER_TIMEOUT_MS);
+    let resp;
+    try {
+      resp = await apiFetch('/game/answer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
+        body: JSON.stringify({
+          game_id: gameState.gameId,
+          answer: answer
+        })
+      });
+    } finally {
+      clearTimeout(timeoutId);
+    }
     
     // Check if response is OK before parsing
     if (!resp.ok) {
@@ -1451,12 +2311,23 @@ async function gameAnswer(answer) {
     document.getElementById('confbar').style.width = gameState.confidence + '%';
     document.getElementById('confpct').textContent = gameState.confidence + '%';
 
+    if (data.action === 'guess' && !canRevealGuess()) {
+      gameState.localMode = true;
+      gameState.confidence = Math.min(gameState.confidence, 75);
+      if (localCandidateEngine.ready && renderLocalNextStep('Fast read')) return;
+      renderQuickFallbackQuestion('Fast read');
+      return;
+    }
+
+    updateCandidateTable(data, data.action === 'guess' ? 'Final read' : 'Live');
+
     if (data.action === 'guess') {
       CharEngine.updateCharacterState({ confidence: gameState.confidence, gameState: 'guessing' });
       CharEngine.updateParticles('guessing', gameState.confidence);
       setTimeout(() => showFinalGuess(data), 800);
     } else if (data.action === 'question') {
       gameState.currentQuestion = data.question;
+      gameState.currentLocalFeature = inferFeatureFromQuestion(data.question);
       document.getElementById('q-text').textContent = data.question;
       document.getElementById('q-text').style.animation = 'none';
       void document.getElementById('q-text').offsetWidth;
@@ -1473,7 +2344,13 @@ async function gameAnswer(answer) {
   } catch(e) {
     setThinking(false);
     console.error('Answer error:', e);
-    showFinalGuess({ playerName: 'MS Dhoni', playerTeam: 'Chennai Super Kings', playerEmoji: '👑', confidence: 55, guessReason: 'Based on your answers, I believe you\'re thinking of the legendary captain cool.' });
+    if (localCandidateEngine.ready) {
+      gameState.localMode = true;
+      renderLocalNextStep('Fast read');
+    } else {
+      gameState.localMode = true;
+      renderQuickFallbackQuestion('Fast read');
+    }
   }
 }
 
@@ -1481,7 +2358,7 @@ async function askQuestion() {
   setThinking(true);
   document.getElementById('qnum').textContent = gameState.questionNum + 1;
 
-  const sys = `You are the SPINZO - a mystical AI cricket oracle that guesses IPL players through questions.
+  const sys = `You are the SPINZO - a mystical AI cricket Wicky that guesses IPL players through questions.
 
 You are playing an Akinator-style game. The user is thinking of an IPL player (past or present from 2008-2024).
 
@@ -1499,7 +2376,7 @@ RESPOND IN THIS EXACT JSON FORMAT ONLY:
   "playerName": "Player full name" (ONLY if action is guess),
   "playerTeam": "Most famous IPL team" (ONLY if action is guess),
   "playerEmoji": "One relevant emoji" (ONLY if action is guess),
-  "guessReason": "2-3 sentence explanation of why you think this is the player" (ONLY if action is guess)
+  "guessReason": "A short paragraph explaining which yes/no clues point to this player, plus the x-factor that made this player stronger than the second-best candidate." (ONLY if action is guess)
 }
 
 Strategy for questions - cycle through these categories intelligently:
@@ -1514,7 +2391,7 @@ Strategy for questions - cycle through these categories intelligently:
 - Specific characteristics
 
 Start with broad questions and get specific. Be dramatic and mystical in reactions.
-Only guess when you have 70%+ confidence or on the 8th-10th question.`;
+Only guess when you have 70%+ confidence or on the 7th-8th question.`;
 
   const historyText = gameState.history.map((h,i) => `Q${i+1}: ${h.q} → Answer: ${h.a}`).join('\n');
   const userMsg = gameState.history.length === 0
@@ -1531,6 +2408,7 @@ Only guess when you have 70%+ confidence or on the 8th-10th question.`;
     gameState.confidence = conf;
     document.getElementById('confbar').style.width = conf + '%';
     document.getElementById('confpct').textContent = conf + '%';
+    updateCandidateTable(parsed, parsed.action === 'guess' ? 'Final read' : 'Live');
 
     CharEngine.updateCharacterState({ confidence:conf, questionText:parsed.question, gameState:'question' });
     CharEngine.setConfidence(conf);
@@ -1539,7 +2417,7 @@ Only guess when you have 70%+ confidence or on the 8th-10th question.`;
     if (parsed.reaction && gameState.history.length > 0) {
       document.getElementById('ai-reaction').textContent = '◈ ' + parsed.reaction;
     } else {
-      document.getElementById('ai-reaction').textContent = '◈ The oracle awakens...';
+      document.getElementById('ai-reaction').textContent = '◈ The Wicky awakens...';
     }
 
     if (parsed.thinkingMsg) {
@@ -1570,6 +2448,8 @@ async function answer(ans) {
   if (ans === 'Yes') SFX.yes();
   else if (ans === 'No') SFX.no();
   else SFX.click();
+  applyLocalAnswer(ans, gameState.currentQuestion, gameState.currentLocalFeature);
+  updateCandidateTable({}, 'Filtering');
   gameState.history.push({ q: gameState.currentQuestion, a: ans });
   gameState.questionNum++;
   CharEngine.updateCharacterState({ answer:ans, confidence:gameState.confidence, questionText:gameState.currentQuestion, gameState:'answer' });
@@ -1585,7 +2465,7 @@ async function answer(ans) {
 async function forceGuess() {
   setThinking(true);
   CharEngine.updateCharacterState({ gameState:'thinking', confidence:gameState.confidence });
-  const sys = `You are the SPINZO IPL Oracle. Based on the Q&A, make your best guess for the IPL player.
+  const sys = `You are the SPINZO IPL Wicky. Based on the Q&A, make your best guess for the IPL player.
 
 RESPOND IN THIS EXACT JSON FORMAT ONLY:
 {
@@ -1594,7 +2474,7 @@ RESPOND IN THIS EXACT JSON FORMAT ONLY:
   "playerTeam": "Most famous IPL team name",
   "playerEmoji": "One relevant emoji",
   "confidence": 55,
-  "guessReason": "2-3 sentence explanation based on the clues given."
+  "guessReason": "A short paragraph explaining which yes/no clues point to this player, plus the x-factor that made this player stronger than the second-best candidate."
 }`;
   const historyText = gameState.history.map((h,i) => `Q${i+1}: ${h.q} → ${h.a}`).join('\n');
   try {
@@ -1602,6 +2482,7 @@ RESPOND IN THIS EXACT JSON FORMAT ONLY:
     const clean = raw.replace(/```json|```/g, '').trim();
     const parsed = JSON.parse(clean);
     setThinking(false);
+    updateCandidateTable(parsed, 'Final read');
     CharEngine.updateCharacterState({ confidence:parsed.confidence||55, gameState:'guessing' });
     CharEngine.updateParticles('guessing', parsed.confidence||55);
     setTimeout(() => showFinalGuess(parsed), 800);
@@ -1612,14 +2493,17 @@ RESPOND IN THIS EXACT JSON FORMAT ONLY:
 }
 
 function showFinalGuess(data) {
+  data = reconcileFinalGuessData(data);
   gameState.lastGuess = data;
   SFX.reveal();
   flashScreen('rgba(255,215,0,0.18)', 300);
+  updateSpinzoSprite('celebrating', Math.round(data.confidence) || gameState.confidence || 75);
+  updateCandidateTable(data, 'Final read');
   document.getElementById('guess-name').textContent = data.playerName || 'Unknown Player';
   document.getElementById('guess-team').textContent = data.playerTeam || 'IPL Team';
   document.getElementById('guess-emoji').textContent = data.playerEmoji || '🏏';
   document.getElementById('guess-conf').textContent = Math.round(data.confidence) || 75;
-  document.getElementById('guess-reason').textContent = data.guessReason || '';
+  renderFinalAnalysis(data);
   document.getElementById('success-name').textContent = data.playerName || '';
   showPage('finalguess');
   attachRipples();
@@ -1629,7 +2513,7 @@ async function submitGameFeedback(wasCorrect, actualPlayer = '') {
   if (!gameState.gameId) return;
   const guess = gameState.lastGuess || {};
   try {
-    await fetch(`${BACKEND_URL}/game/feedback`, {
+    await apiFetch('/game/feedback', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -1678,7 +2562,9 @@ async function submitReveal() {
 
 function resetGame() {
   SFX.click();
-  gameState = { active:false, questionNum:0, maxQuestions:10, history:[], currentQuestion:'', confidence:10, gameId:null, lastGuess:null };
+  gameState = { active:false, questionNum:0, maxQuestions:8, history:[], currentQuestion: '', currentLocalFeature:null, confidence:10, gameId:null, lastGuess:null, localMode:false };
+  candidateBoard = [];
+  resetLocalCandidateEngine();
   document.getElementById('player-reveal').value = '';
   document.getElementById('reveal-thanks').style.display = 'none';
   showPage('home');
