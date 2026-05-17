@@ -52,10 +52,10 @@ def guess_player(top_candidates: list) -> str:
         f"{candidates}\n\n"
         "Return EXACTLY one short sentence in this format:\n"
         "The player is <short_name>. I am <confidence_pct>% sure.\n"
-        "Do NOT add explanations or extra text."
+        "With a text based brief justification why specifically the player is chosen over other candidates with reference to user answers aligining yes or no to specific features. Along side other possible candidates that were possible but not chosen because of particular user feedback. "
     )
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3-flash-preview",
         contents=prompt_text,
     )
     return response.text.strip()

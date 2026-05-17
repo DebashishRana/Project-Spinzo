@@ -6,12 +6,11 @@ import os
 class DeductionEngine:
     def __init__(self, players_data: List[Dict[str, Any]]):
         self.players = players_data
-        # Initialize probabilities evenly (or based on prior popularity if needed)
+
         self.probabilities = {p["id"]: 1.0 / len(self.players) for p in self.players}
         self.asked_features = set()
 
-        # Define features we can ask about
-        # Exclude identifying fields like id, name
+
         self.available_features = [
             "country", "overseas", "role", "captain", "finisher",
             "teams", "active", "batting_position", "orange_cap", "purple_cap"
@@ -22,8 +21,7 @@ class DeductionEngine:
         entropy = 0.0
         for p in probabilities.values():
             if p > 0:
-                entropy -= p * math.log2(
-                    p)
+                entropy -= p * math.log2(p)   # the formula for entropy is -summation(log(1/p)
         return entropy
 
     def get_best_feature(self) -> str:
@@ -48,9 +46,6 @@ class DeductionEngine:
                 else:
                     val_probs[f"{feature}:{val}"] += self.probabilities[player["id"]]
 
-            # Simple heuristic: best feature is one whose distribution is closest to 50/50
-            # (or uniformly distributed for categorical)
-            # A more robust IG calculation would compute H(S) - H(S|A)
             expected_entropy = 0
             for weight in val_probs.values():
                 if weight > 0:

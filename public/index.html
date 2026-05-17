@@ -1239,10 +1239,11 @@ let localCandidateEngine = {
   allPlayers: [],
   remaining: [],
   scores: new Map(),
-  askedFields: new Set()
+  askedFields: new Set(),
+  constraints: []
 };
 
-const BACKEND_ANSWER_TIMEOUT_MS = 16000;
+const BACKEND_ANSWER_TIMEOUT_MS = 30000;
 const MIN_QUESTIONS_BEFORE_GUESS = 8;
 
 const DEFAULT_CANDIDATE_POOL = [
@@ -1361,6 +1362,7 @@ function resetLocalCandidateEngine() {
   localCandidateEngine.remaining = players.slice();
   localCandidateEngine.scores = new Map(players.map(player => [getPlayerDisplayName(player), 1]));
   localCandidateEngine.askedFields = new Set();
+  localCandidateEngine.constraints = [];
 }
 
 async function initLocalCandidateEngine() {
@@ -1413,6 +1415,8 @@ function inferFeatureFromQuestion(questionText) {
   if (hasAny(['retired', 'former player'])) return { id: 'akinator_tags.is_active_2025', test: player => !getNestedValue(player, 'akinator_tags.is_active_2025') };
   if (hasAny(['legend', 'iconic'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.is_legend');
   if (hasAny(['six', 'power hitter', 'big hitter'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.known_for_sixhitting');
+  if (hasAny(['primarily a batter', 'primarily known for batting', 'mainly a batter'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'identity.playing_role.batter');
+  if (hasAny(['primarily a bowler', 'mainly a bowler'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'identity.playing_role.bowler');
   if (hasAny(['big runs', 'run scorer', 'runs', 'batsman', 'batter', 'opener'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.known_for_big_runs');
   if (hasAny(['wickets', 'wicket taker', 'bowler'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.known_for_wickets');
   if (hasAny(['won ipl', 'ipl title', 'champion', 'trophy'])) return LOCAL_QUESTION_FEATURES.find(f => f.id === 'akinator_tags.has_won_ipl');
@@ -1435,19 +1439,48 @@ function applyLocalAnswer(answer, questionText, suppliedFeature) {
   localCandidateEngine.askedFields.add(feature.id);
 
   const wantsMatch = normalized === 'yes' || normalized === 'y';
-  const nextRemaining = localCandidateEngine.remaining.filter(player => Boolean(feature.test(player)) === wantsMatch);
-  if (nextRemaining.length) {
-    localCandidateEngine.remaining = nextRemaining;
-  }
-
-  localCandidateEngine.allPlayers.forEach(player => {
-    const name = getPlayerDisplayName(player);
-    const current = localCandidateEngine.scores.get(name) || 1;
-    const matched = Boolean(feature.test(player)) === wantsMatch;
-    localCandidateEngine.scores.set(name, current * (matched ? 2.4 : 0.18));
+  localCandidateEngine.constraints.push({
+    feature,
+    wantsMatch,
+    answer: normalized,
+    question: questionText
   });
+  recomputeLocalCandidates();
+  candidateBoard = [];
 
   return true;
+}
+
+function recomputeLocalCandidates() {
+  const players = localCandidateEngine.allPlayers || [];
+  const constraints = localCandidateEngine.constraints || [];
+  const scores = new Map();
+
+  players.forEach(player => {
+    let score = 1;
+    let strictMatch = true;
+
+    constraints.forEach(({ feature, wantsMatch }) => {
+      const matched = Boolean(feature.test(player)) === wantsMatch;
+      if (!matched) strictMatch = false;
+      score *= matched ? 3.2 : 0.08;
+    });
+
+    if (strictMatch) score *= 1 + constraints.length * 0.35;
+    scores.set(getPlayerDisplayName(player), score);
+  });
+
+  const strictRemaining = players.filter(player =>
+    constraints.every(({ feature, wantsMatch }) => Boolean(feature.test(player)) === wantsMatch)
+  );
+
+  localCandidateEngine.scores = scores;
+  localCandidateEngine.remaining = strictRemaining.length
+    ? strictRemaining
+    : players
+        .slice()
+        .sort((a, b) => (scores.get(getPlayerDisplayName(b)) || 0) - (scores.get(getPlayerDisplayName(a)) || 0))
+        .slice(0, Math.min(12, players.length));
 }
 
 function getLocalCandidateRows(limit = 5) {
@@ -1465,7 +1498,7 @@ function getLocalCandidateRows(limit = 5) {
   const total = scored.reduce((sum, item) => sum + item.score, 0) || scored.length || 1;
   return scored.slice(0, limit).map(item => ({
     name: item.name,
-    confidence: normalizeConfidenceValue((item.score / total) * 100, Math.max(1, 100 / total)),
+    confidence: Math.max(1, Math.min(99, Math.round((item.score / total) * 100))),
     player: item.player
   }));
 }
@@ -1474,10 +1507,13 @@ function selectLocalQuestion() {
   if (!localCandidateEngine.ready) return null;
   const pool = localCandidateEngine.remaining;
   if (pool.length <= 1) return null;
+  const askedText = new Set(gameState.history.map(item => String(item.q || '').toLowerCase()));
+  if (gameState.currentQuestion) askedText.add(String(gameState.currentQuestion).toLowerCase());
 
   let best = null;
   for (const feature of LOCAL_QUESTION_FEATURES) {
     if (localCandidateEngine.askedFields.has(feature.id)) continue;
+    if (askedText.has(String(feature.question || '').toLowerCase())) continue;
     const yesCount = pool.reduce((count, player) => count + (feature.test(player) ? 1 : 0), 0);
     const noCount = pool.length - yesCount;
     if (!yesCount || !noCount) continue;
@@ -1565,6 +1601,7 @@ function renderQuestionText(question, reason = 'Fast read') {
 
 function renderQuickFallbackQuestion(reason = 'Fast read') {
   const asked = new Set(gameState.history.map(item => item.q));
+  if (gameState.currentQuestion) asked.add(gameState.currentQuestion);
   const question = QUICK_FALLBACK_QUESTIONS.find(q => !asked.has(q))
     || QUICK_FALLBACK_QUESTIONS[gameState.questionNum % QUICK_FALLBACK_QUESTIONS.length];
   const fallbackConfidence = Math.min(75, Math.max(gameState.confidence || 10, 12 + gameState.questionNum * 7));
@@ -2250,7 +2287,7 @@ async function gameStart() {
     gameState.gameId = null;  // Explicitly clear gameId on error
     if (localCandidateEngine.ready) {
       gameState.localMode = true;
-      renderQuickFallbackQuestion('Fast start');
+      renderLocalNextStep('Fast start');
       return;
     }
     document.getElementById('q-text').textContent = 'Server error: ' + e.message;
